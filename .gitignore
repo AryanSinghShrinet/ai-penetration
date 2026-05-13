@@ -8,6 +8,7 @@ ENV/
 .env
 
 # Project specific
+data/datasets/
 data/logs/
 data/run_state/
 data/scanner_state/
