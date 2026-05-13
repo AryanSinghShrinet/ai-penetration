@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - AI Bug Bounty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/static/dashboard.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #0b1120;
+    }
+    .login-container {
+      background: linear-gradient(135deg, #0f1923 0%, #1a2535 100%);
+      border: 1px solid #2a3f5f;
+      border-radius: 14px;
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    .login-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .login-subtitle {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+    .login-input {
+      width: 100%;
+      background: #1e2d3d;
+      border: 1px solid #2a3f5f;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      padding: 12px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .login-input:focus {
+      border-color: #3b82f6;
+    }
+    .login-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .login-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .login-btn:active {
+      transform: translateY(0);
+    }
+    .error-msg {
+      color: #ef4444;
+      font-size: 13px;
+      margin-bottom: 16px;
+      background: rgba(239, 68, 68, 0.1);
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="icon" style="font-size: 40px; margin-bottom: 16px;">🔐</div>
+    <h1 class="login-title">Restricted Access</h1>
+    <p class="login-subtitle">Please enter your API Key to access the dashboard.</p>
+    
+    {% if error %}
+    <div class="error-msg">{{ error }}</div>
+    {% endif %}
+    
+    <form method="POST" action="{{ url_for('login') }}">
+      <input type="password" name="password" class="login-input" placeholder="Enter API Key" required autofocus>
+      <button type="submit" class="login-btn">Unlock Dashboard</button>
+    </form>
+  </div>
+</body>
+
+</html>

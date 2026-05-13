@@ -1,0 +1,63 @@
+# =============================================================================
+# AI Provider Configuration
+# =============================================================================
+enabled: true
+
+# --- Active Provider ---
+# Options: "local", "openai", "anthropic"
+# Set to "local" to use a local Ollama model (no API key needed).
+provider: local
+
+# --- Active Model ---
+# For local: use any model name from `ollama list`
+# For openai: gpt-4o, gpt-4o-mini, etc.
+# For anthropic: claude-3-5-haiku-20241022, claude-sonnet-4-20250514, etc.
+model: qwen2.5-coder:7b
+
+# --- Local Ollama Settings ---
+local:
+  base_url: "http://localhost:11434/v1"
+  # Primary model (best for security reasoning + JSON output)
+  primary_model: qwen2.5-coder:7b
+  # All available local models (from your `ollama list`).
+  # Change "model" above to any of these to switch instantly.
+  available_models:
+    - name: qwen2.5-coder:7b
+      description: "BEST - Technical reasoning, strict JSON, security analysis"
+    - name: deepseek-coder:6.7b
+      description: "GREAT - Code understanding, exploit analysis"
+    - name: llama3:latest
+      description: "GOOD - General reasoning, reliable fallback"
+    - name: llama3.2:latest
+      description: "FAST - Lightweight, use when speed matters"
+    - name: qwen2.5:3b
+      description: "TINY - Minimal RAM usage, basic tasks only"
+    - name: phi4-mini:latest
+      description: "SMALL - Good reasoning for its size"
+    - name: gemma2:2b
+      description: "SMALLEST - Last resort if RAM is very limited"
+    - name: qwen2.5vl:3b
+      description: "VISION - Can analyze screenshots of web apps"
+    - name: llama3.2-vision:latest
+      description: "VISION - Larger vision model for image analysis"
+    - name: starcoder2:7b
+      description: "CODE - Specialized code completion/analysis"
+
+# --- Cloud API Settings (used when provider is not "local") ---
+cloud:
+  # Set your API key here OR via environment variable:
+  #   ANTHROPIC_API_KEY or OPENAI_API_KEY
+  # api_key: ""
+  anthropic_model: claude-sonnet-4-20250514
+  openai_model: gpt-4o-mini
+
+mode:
+  explain_findings: true
+  payload_suggestions: true
+  business_logic_reasoning: true
+  report_summaries: true
+
+safety:
+  allow_execution: true
+  allow_chain_execution: true
+  max_tokens: 1200

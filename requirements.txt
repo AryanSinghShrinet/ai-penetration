@@ -1,0 +1,24 @@
+# Core HTTP & web framework
+flask~=2.3
+requests~=2.31
+urllib3~=2.2
+
+# Configuration & serialisation
+pyyaml~=6.0
+
+# Machine learning
+scikit-learn~=1.3
+numpy~=1.24
+pandas~=2.0
+joblib~=1.3
+
+# AI SDKs  (required for attack_planner.py AI reasoning layer)
+anthropic~=0.25
+openai~=1.30
+
+# PostgreSQL Support
+psycopg2-binary~=2.9
+python-dotenv~=1.0
+
+# Deployment
+gunicorn~=21.2

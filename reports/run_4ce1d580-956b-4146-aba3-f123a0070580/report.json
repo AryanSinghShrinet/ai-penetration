@@ -1,0 +1,403 @@
+{
+  "run_id": "4ce1d580-956b-4146-aba3-f123a0070580",
+  "created_at": "2026-05-13T14:54:05.099618",
+  "target": "https://testphp.vulnweb.com",
+  "checklist": {
+    "xss": "PLANNED",
+    "sqli": "PLANNED",
+    "idor": "PLANNED",
+    "ssrf": "NOT_STARTED",
+    "file_upload": "PLANNED",
+    "lfi": "NOT_STARTED",
+    "path_traversal": "NOT_STARTED",
+    "cmd_injection": "PLANNED",
+    "auth_bypass": "NOT_STARTED",
+    "business_logic": "PLANNED",
+    "cors": "FAILED",
+    "open_redirect": "NOT_STARTED",
+    "csrf": "NOT_STARTED",
+    "brute_force": "NOT_STARTED",
+    "information_disclosure": "NOT_STARTED",
+    "security_headers": "NOT_STARTED"
+  },
+  "recon_summary": {
+    "endpoints": 0,
+    "parameters": [],
+    "forms": []
+  },
+  "context": {
+    "application_type": "unknown",
+    "response_type": "unknown",
+    "likely_vulnerabilities": [],
+    "notes": []
+  },
+  "learning": {
+    "promoted": [],
+    "demoted": [],
+    "blocked_patterns": []
+  },
+  "chains": [
+    {
+      "name": "XSS to Session Hijack",
+      "steps": [
+        {
+          "step": 1,
+          "vuln": "xss",
+          "action": "Inject malicious script"
+        },
+        {
+          "step": 2,
+          "vuln": "cors",
+          "action": "Exfiltrate session token"
+        }
+      ],
+      "severity": "high",
+      "impact": "Session/token theft",
+      "score": {
+        "likelihood": 0.65,
+        "impact": 0.6,
+        "effort": "Medium"
+      }
+    },
+    {
+      "name": "Stored XSS to Account Takeover",
+      "steps": [
+        {
+          "step": 1,
+          "vuln": "xss",
+          "action": "Store persistent XSS"
+        },
+        {
+          "step": 2,
+          "vuln": "business_logic",
+          "action": "Trigger admin action"
+        }
+      ],
+      "severity": "critical",
+      "impact": "Mass account compromise",
+      "score": {
+        "likelihood": 0.65,
+        "impact": 0.6,
+        "effort": "Medium"
+      }
+    },
+    {
+      "name": "IDOR to File Upload RCE",
+      "steps": [
+        {
+          "step": 1,
+          "vuln": "idor",
+          "action": "Access admin upload panel"
+        },
+        {
+          "step": 2,
+          "vuln": "file_upload",
+          "action": "Upload web shell"
+        }
+      ],
+      "severity": "critical",
+      "impact": "Remote code execution",
+      "score": {
+        "likelihood": 0.65,
+        "impact": 1.0,
+        "effort": "Medium"
+      }
+    },
+    {
+      "name": "Business Logic to Financial Fraud",
+      "steps": [
+        {
+          "step": 1,
+          "vuln": "business_logic",
+          "action": "Manipulate transaction flow"
+        },
+        {
+          "step": 2,
+          "vuln": "idor",
+          "action": "Transfer to attacker account"
+        }
+      ],
+      "severity": "critical",
+      "impact": "Financial loss",
+      "score": {
+        "likelihood": 0.55,
+        "impact": 0.7,
+        "effort": "Medium"
+      }
+    },
+    {
+      "name": "SQLi to Command Injection",
+      "steps": [
+        {
+          "step": 1,
+          "vuln": "sqli",
+          "action": "Write file via INTO OUTFILE"
+        },
+        {
+          "step": 2,
+          "vuln": "file_upload",
+          "action": "Execute uploaded file"
+        }
+      ],
+      "severity": "critical",
+      "impact": "Remote code execution",
+      "score": {
+        "likelihood": 0.5,
+        "impact": 0.9,
+        "effort": "Medium"
+      }
+    },
+    {
+      "name": "IDOR to RCE via Upload",
+      "steps": [
+        {
+          "step": 1,
+          "vuln": "idor",
+          "action": "Exploit idor"
+        },
+        {
+          "step": 2,
+          "vuln": "file_upload",
+          "action": "Exploit file_upload"
+        }
+      ],
+      "severity": "critical",
+      "impact": "Privilege escalation or RCE",
+      "reason": "Unauthorized object access combined with upload handling",
+      "matched": [
+        "idor",
+        "file_upload"
+      ],
+      "missing": [],
+      "score": {
+        "likelihood": 0.65,
+        "impact": 1.0,
+        "effort": "Medium"
+      }
+    },
+    {
+      "name": "Business Logic to Account Takeover",
+      "steps": [
+        {
+          "step": 1,
+          "vuln": "business_logic",
+          "action": "Exploit business_logic"
+        },
+        {
+          "step": 2,
+          "vuln": "idor",
+          "action": "Exploit idor"
+        }
+      ],
+      "severity": "critical",
+      "impact": "Account takeover or workflow abuse",
+      "reason": "Logic flaw allows access to other users' objects",
+      "matched": [
+        "business_logic",
+        "idor"
+      ],
+      "missing": [],
+      "score": {
+        "likelihood": 0.55,
+        "impact": 0.7,
+        "effort": "Medium"
+      }
+    },
+    {
+      "name": "Stored XSS Chain",
+      "steps": [
+        {
+          "step": 1,
+          "vuln": "xss",
+          "action": "Exploit xss"
+        },
+        {
+          "step": 2,
+          "vuln": "business_logic",
+          "action": "Exploit business_logic"
+        }
+      ],
+      "severity": "high",
+      "impact": "Stored attack across workflow",
+      "reason": "Injected data reused across trusted steps",
+      "matched": [
+        "xss",
+        "business_logic"
+      ],
+      "missing": [],
+      "score": {
+        "likelihood": 0.65,
+        "impact": 0.6,
+        "effort": "Medium"
+      }
+    },
+    {
+      "name": "SQLi to Admin Access",
+      "steps": [
+        {
+          "step": 1,
+          "vuln": "sqli",
+          "action": "Exploit sqli"
+        }
+      ],
+      "severity": "critical",
+      "impact": "Database compromise, credential theft",
+      "reason": "SQL injection can extract sensitive data",
+      "matched": [
+        "sqli"
+      ],
+      "missing": [],
+      "score": {
+        "likelihood": 0.5,
+        "impact": 0.9,
+        "effort": "Low"
+      }
+    },
+    {
+      "name": "Auth Bypass to Privilege Escalation",
+      "steps": [
+        {
+          "step": 1,
+          "vuln": "auth_bypass",
+          "action": "Exploit auth_bypass"
+        },
+        {
+          "step": 2,
+          "vuln": "idor",
+          "action": "Exploit idor"
+        }
+      ],
+      "severity": "critical",
+      "impact": "Unauthorized access to all users",
+      "reason": "Authentication bypass combined with insecure object references",
+      "matched": [
+        "idor"
+      ],
+      "missing": [
+        "auth_bypass"
+      ],
+      "score": {
+        "likelihood": 0.55,
+        "impact": 0.7,
+        "effort": "Medium"
+      }
+    },
+    {
+      "name": "Command Injection to RCE",
+      "steps": [
+        {
+          "step": 1,
+          "vuln": "cmd_injection",
+          "action": "Exploit cmd_injection"
+        }
+      ],
+      "severity": "critical",
+      "impact": "Remote code execution",
+      "reason": "Direct command execution on server",
+      "matched": [
+        "cmd_injection"
+      ],
+      "missing": [],
+      "score": {
+        "likelihood": 0.4,
+        "impact": 1.0,
+        "effort": "Low"
+      }
+    },
+    {
+      "name": "File Upload to Web Shell",
+      "steps": [
+        {
+          "step": 1,
+          "vuln": "file_upload",
+          "action": "Exploit file_upload"
+        }
+      ],
+      "severity": "critical",
+      "impact": "Remote code execution",
+      "reason": "Unrestricted file upload allows web shell deployment",
+      "matched": [
+        "file_upload"
+      ],
+      "missing": [],
+      "score": {
+        "likelihood": 0.5,
+        "impact": 0.9,
+        "effort": "Low"
+      }
+    },
+    {
+      "name": "CORS to Token Theft",
+      "steps": [
+        {
+          "step": 1,
+          "vuln": "cors",
+          "action": "Exploit cors"
+        }
+      ],
+      "severity": "high",
+      "impact": "Session token exfiltration",
+      "reason": "Misconfigured CORS allows cross-origin data theft",
+      "matched": [
+        "cors"
+      ],
+      "missing": [],
+      "score": {
+        "likelihood": 0.5,
+        "impact": 0.5,
+        "effort": "Low"
+      }
+    }
+  ],
+  "raw_results": {
+    "business_logic": [
+      {
+        "payload": "probe-business_logic",
+        "status": "PLANNED",
+        "evidence": "Dry-run: no request sent"
+      }
+    ],
+    "idor": [
+      {
+        "payload": "IDOR swap 4 <-> 1",
+        "status": "PLANNED",
+        "evidence": "Dry-run: no request sent"
+      }
+    ],
+    "sqli": [
+      {
+        "payload": "1; SELECT SLEEP(2)--",
+        "status": "PLANNED",
+        "evidence": "Dry-run: no request sent"
+      }
+    ],
+    "file_upload": [
+      {
+        "payload": "probe-file_upload",
+        "status": "PLANNED",
+        "evidence": "Dry-run: no request sent"
+      }
+    ],
+    "cmd_injection": [
+      {
+        "payload": "`cat /etc/passwd`",
+        "status": "PLANNED",
+        "evidence": "Dry-run: no request sent"
+      }
+    ],
+    "xss": [
+      {
+        "payload": "<svg onload=alert(1)>",
+        "status": "PLANNED",
+        "evidence": "Dry-run: no request sent"
+      }
+    ],
+    "cors": [
+      {
+        "payload": "probe-cors",
+        "status": "PLANNED",
+        "evidence": "Dry-run: no request sent"
+      }
+    ]
+  }
+}

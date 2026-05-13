@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Bug Bounty Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/static/dashboard.css">
+  <style>
+    /* ── AI Model Selector Panel ── */
+    .ai-panel {
+      background: linear-gradient(135deg, #0f1923 0%, #1a2535 100%);
+      border: 1px solid #2a3f5f;
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    }
+    .ai-panel-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .ai-panel-info {
+      flex: 1;
+      min-width: 200px;
+    }
+    .ai-panel-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+    .ai-panel-current {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ai-status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+      flex-shrink: 0;
+      animation: pulse-dot 2s infinite;
+    }
+    .ai-status-dot.offline { background: #ef4444; box-shadow: 0 0 8px #ef4444; animation: none; }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .ai-model-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+    .ai-provider-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .ai-provider-badge.local   { background: #1e3a5f; color: #60a5fa; }
+    .ai-provider-badge.openai  { background: #1a3a2a; color: #4ade80; }
+    .ai-provider-badge.anthropic { background: #3a1a2a; color: #f472b6; }
+
+    .ai-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .ai-select {
+      background: #1e2d3d;
+      border: 1px solid #2a3f5f;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      padding: 8px 12px;
+      cursor: pointer;
+      outline: none;
+      min-width: 220px;
+      transition: border-color 0.2s;
+    }
+    .ai-select:hover, .ai-select:focus { border-color: #3b82f6; }
+    .ai-switch-btn {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      white-space: nowrap;
+    }
+    .ai-switch-btn:hover   { opacity: 0.9; transform: translateY(-1px); }
+    .ai-switch-btn:active  { transform: translateY(0); }
+    .ai-switch-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .ai-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e2d3d;
+      border: 1px solid #2a3f5f;
+      color: #e2e8f0;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      z-index: 9999;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .ai-toast.show { transform: translateY(0); opacity: 1; }
+    .ai-toast.success { border-color: #22c55e; }
+    .ai-toast.error   { border-color: #ef4444; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">AI Bug Bounty <span class="highlight">Dashboard</span></h1>
+      <a href="/showcase/" class="action-btn">🚀 Start New Scan</a>
+    </div>
+
+    <!-- ── AI Model Selector Panel ── -->
+    <div class="ai-panel" id="aiPanel">
+      <div class="ai-panel-icon">🤖</div>
+      <div class="ai-panel-info">
+        <div class="ai-panel-label">Active AI Brain</div>
+        <div class="ai-panel-current">
+          <div class="ai-status-dot" id="aiStatusDot"></div>
+          <span class="ai-model-name" id="aiModelName">Loading...</span>
+          <span class="ai-provider-badge" id="aiProviderBadge">—</span>
+        </div>
+      </div>
+      <div class="ai-controls">
+        <select class="ai-select" id="aiModelSelect">
+          <option value="">— Select a model —</option>
+        </select>
+        <button class="ai-switch-btn" id="aiSwitchBtn" onclick="switchAIModel()">⚡ Switch Model</button>
+      </div>
+    </div>
+
+    {% if runs %}
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-value total">{{ runs|length }}</div>
+        <div class="stat-label">Total Runs</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value found">{{ runs|sum(attribute='findings_count') if runs[0].findings_count is defined else
+          '?' }}</div>
+        <div class="stat-label">Vulnerabilities Found</div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h2 class="section-title">Recent Scans</h2>
+    </div>
+
+    <div class="runs-grid">
+      {% for run in runs %}
+      <a href="/run/{{ run.run_id }}" class="run-card">
+        <div class="run-header">
+          <span class="run-id">{{ run.run_id[:8] }}...</span>
+          <span class="run-date">{{ run.timestamp if run.timestamp else '' }}</span>
+        </div>
+        <div class="run-target">🎯 {{ run.target }}</div>
+        <div class="run-stats">
+          {% if run.checklist %}
+          {% set found = run.checklist.values()|select('equalto', 'FOUND')|list|length %}
+          {% set blocked = run.checklist.values()|select('equalto', 'BLOCKED')|list|length %}
+          {% if found > 0 %}
+          <span class="run-stat found">✅ {{ found }} Found</span>
+          {% endif %}
+          {% if blocked > 0 %}
+          <span class="run-stat blocked">🔶 {{ blocked }} Blocked</span>
+          {% endif %}
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+      <div class="icon">🔍</div>
+      <h3>No scans yet</h3>
+      <p>Start a new scan to see your vulnerability reports here.</p>
+      <br>
+      <a href="/showcase/" class="action-btn">🚀 Start Your First Scan</a>
+    </div>
+    {% endif %}
+
+    <div class="footer-links">
+      <a href="/showcase/" class="footer-link">🏠 Showcase</a>
+      <a href="/exploits" class="footer-link">🔥 Exploit Database</a>
+      <a href="/learning" class="footer-link">🧠 Learning Memory</a>
+      <a href="/api/ai/config" class="footer-link" target="_blank">⚙️ AI Config (JSON)</a>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="ai-toast" id="aiToast"></div>
+
+  <script>
+    // ── Load current AI config on page open ──
+    async function loadAIConfig() {
+      try {
+        const res  = await fetch('/api/ai/config');
+        const data = await res.json();
+
+        // Update current model display
+        const dot     = document.getElementById('aiStatusDot');
+        const name    = document.getElementById('aiModelName');
+        const badge   = document.getElementById('aiProviderBadge');
+        const select  = document.getElementById('aiModelSelect');
+
+        name.textContent  = data.model || 'Unknown';
+        badge.textContent = data.provider || '—';
+        badge.className   = 'ai-provider-badge ' + (data.provider || 'local');
+
+        if (data.enabled) {
+          dot.classList.remove('offline');
+        } else {
+          dot.classList.add('offline');
+          name.textContent += ' (disabled)';
+        }
+
+        // Populate dropdown with all local models
+        select.innerHTML = '<option value="">— Select a model —</option>';
+
+        // Add current provider/model first if not local
+        if (data.provider !== 'local') {
+          const opt = document.createElement('option');
+          opt.value = JSON.stringify({ provider: data.provider, model: data.model });
+          opt.textContent = `[${data.provider.toUpperCase()}] ${data.model}`;
+          select.appendChild(opt);
+        }
+
+        // Add optgroup for local models
+        const localModels = data.local?.available_models || [];
+        if (localModels.length > 0) {
+          const group = document.createElement('optgroup');
+          group.label = '🖥️  Local Ollama Models';
+          localModels.forEach(m => {
+            const opt = document.createElement('option');
+            opt.value = JSON.stringify({ provider: 'local', model: m.name });
+            // Pre-select the current model
+            if (data.provider === 'local' && m.name === data.model) {
+              opt.selected = true;
+            }
+            opt.textContent = m.name + (m.description ? '  —  ' + m.description : '');
+            group.appendChild(opt);
+          });
+          select.appendChild(group);
+        }
+
+      } catch (e) {
+        document.getElementById('aiModelName').textContent = 'Could not load';
+        document.getElementById('aiStatusDot').classList.add('offline');
+        console.error('AI config load error:', e);
+      }
+    }
+
+    // ── Switch AI Model ──
+    async function switchAIModel() {
+      const select = document.getElementById('aiModelSelect');
+      const btn    = document.getElementById('aiSwitchBtn');
+
+      if (!select.value) {
+        showToast('⚠️ Please select a model first', 'error');
+        return;
+      }
+
+      let payload;
+      try {
+        payload = JSON.parse(select.value);
+      } catch (e) {
+        showToast('Invalid selection', 'error');
+        return;
+      }
+
+      btn.disabled    = true;
+      btn.textContent = '⏳ Switching...';
+
+      try {
+        const res  = await fetch('/api/ai/config', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          showToast(`✅ Switched to ${data.model}`, 'success');
+          await loadAIConfig();   // Refresh the display
+        } else {
+          showToast(`❌ Error: ${data.error}`, 'error');
+        }
+      } catch (e) {
+        showToast('❌ Network error — is the server running?', 'error');
+      } finally {
+        btn.disabled    = false;
+        btn.textContent = '⚡ Switch Model';
+      }
+    }
+
+    // ── Toast helper ──
+    function showToast(msg, type = '') {
+      const toast      = document.getElementById('aiToast');
+      toast.textContent = msg;
+      toast.className  = 'ai-toast show ' + type;
+      setTimeout(() => { toast.className = 'ai-toast'; }, 3500);
+    }
+
+    // Load on page open
+    loadAIConfig();
+  </script>
+</body>
+
+</html>

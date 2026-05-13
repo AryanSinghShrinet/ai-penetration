@@ -1,0 +1,21 @@
+enabled: true
+
+type: cookie        # cookie | bearer | header
+
+cookie:
+  # D-3 FIX: Never commit real credentials. Set these environment variables
+  # before running: SESSION_COOKIE and CSRF_TOKEN
+  # Example: $env:SESSION_COOKIE="sessionid=real_value; csrftoken=real_csrf"
+  raw: "${SESSION_COOKIE}"
+
+bearer:
+  token: ""
+
+header:
+  name: ""
+  value: ""
+
+scope:
+  allowed_roles:
+    - user
+    - admin

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Pentester | Autonomous Bug Bounty Framework</title>
+    <meta name="description"
+        content="Advanced AI-powered autonomous penetration testing framework combining ML vulnerability prediction, intelligent reconnaissance, and attack chaining.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="logo-icon">🔐</span>
+            <span class="logo-text">AI-Pentester</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#scan" class="nav-cta">Start Scan</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#vulns">Vulnerabilities</a></li>
+            <li><a href="#workflow">How It Works</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                Autonomous Security Testing
+            </div>
+            <h1 class="hero-title">
+                <span class="gradient-text">AI-Powered</span>
+                <br>Penetration Testing
+            </h1>
+            <p class="hero-subtitle">
+                An advanced autonomous bug bounty framework combining machine learning, intelligent reconnaissance, and
+                sophisticated attack chaining for comprehensive security analysis.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">7+</span>
+                    <span class="stat-label">Vulnerability Types</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">ML</span>
+                    <span class="stat-label">Powered Analysis</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">Auto</span>
+                    <span class="stat-label">Report Generation</span>
+                </div>
+            </div>
+            <div class="hero-terminal">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">ai-pentester</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line" id="terminal-output"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scan Section -->
+    <section class="scan-section" id="scan">
+        <div class="container">
+            <h2 class="section-title">Start a <span class="gradient-text">Scan</span></h2>
+            <p class="section-subtitle">Enter a URL, domain, or wildcard (*.example.com) to begin scanning</p>
+
+            <div class="scan-layout">
+                <!-- Left Column: Form & Status -->
+                <div class="scan-main">
+                    <div class="scan-panel">
+                        <div class="scan-form-container">
+                            <form id="scan-form" class="scan-form">
+                                <div class="input-group">
+                                    <span class="input-icon">🎯</span>
+                                    <input type="text" id="target-url"
+                                        placeholder="example.com, https://example.com, or *.example.com" required
+                                        autocomplete="url" oninput="validateScope()">
+                                </div>
+
+                                <!-- FIX 4: Scope Validation Warning -->
+                                <div id="scope-warning" class="scope-warning" style="display: none;">
+                                    ⚠️ <strong>Warning:</strong> This target may be <span id="scope-status">outside
+                                        scope</span>.
+                                    <a href="#" onclick="loadScope(); return false;">View scope config</a>
+                                </div>
+
+                                <!-- FIX 5: Scan Configuration Panel -->
+                                <details class="config-panel">
+                                    <summary>⚙️ Advanced Settings</summary>
+                                    <div class="config-grid">
+                                        <div class="config-item">
+                                            <label for="crawl-depth">Crawl Depth</label>
+                                            <input type="number" id="crawl-depth" value="3" min="1" max="10">
+                                        </div>
+                                        <div class="config-item">
+                                            <label for="max-pages">Max Pages</label>
+                                            <input type="number" id="max-pages" value="100" min="10" max="1000">
+                                        </div>
+                                        <div class="config-item">
+                                            <label for="rate-limit">Rate (req/s)</label>
+                                            <input type="number" id="rate-limit" value="5" min="1" max="20">
+                                        </div>
+                                    </div>
+
+                                    <!-- FIX 7: Vulnerability Type Selection -->
+                                    <div class="vuln-selection">
+                                        <div class="vuln-selection-header">
+                                            <label>Vulnerability Types to Scan</label>
+                                            <div class="vuln-selection-actions">
+                                                <button type="button" onclick="selectAllVulns(true)">All</button>
+                                                <button type="button" onclick="selectAllVulns(false)">None</button>
+                                            </div>
+                                        </div>
+                                        <div class="vuln-checkbox-grid">
+                                            <label class="vuln-checkbox">
+                                                <input type="checkbox" name="vuln-type" value="xss" checked>
+                                                <span>💉 XSS</span>
+                                            </label>
+                                            <label class="vuln-checkbox">
+                                                <input type="checkbox" name="vuln-type" value="sqli" checked>
+                                                <span>🗃️ SQLi</span>
+                                            </label>
+                                            <label class="vuln-checkbox">
+                                                <input type="checkbox" name="vuln-type" value="idor" checked>
+                                                <span>🔓 IDOR</span>
+                                            </label>
+                                            <label class="vuln-checkbox">
+                                                <input type="checkbox" name="vuln-type" value="cors" checked>
+                                                <span>🌐 CORS</span>
+                                            </label>
+                                            <label class="vuln-checkbox">
+                                                <input type="checkbox" name="vuln-type" value="ssrf" checked>
+                                                <span>🔗 SSRF</span>
+                                            </label>
+                                            <label class="vuln-checkbox">
+                                                <input type="checkbox" name="vuln-type" value="xxe" checked>
+                                                <span>📄 XXE</span>
+                                            </label>
+                                            <label class="vuln-checkbox">
+                                                <input type="checkbox" name="vuln-type" value="command_injection"
+                                                    checked>
+                                                <span>💻 Command Inj</span>
+                                            </label>
+                                            <label class="vuln-checkbox">
+                                                <input type="checkbox" name="vuln-type" value="file_upload" checked>
+                                                <span>📤 File Upload</span>
+                                            </label>
+                                            <label class="vuln-checkbox">
+                                                <input type="checkbox" name="vuln-type" value="lfi" checked>
+                                                <span>📂 LFI</span>
+                                            </label>
+                                            <label class="vuln-checkbox">
+                                                <input type="checkbox" name="vuln-type" value="ssti" checked>
+                                                <span>🔧 SSTI</span>
+                                            </label>
+                                            <label class="vuln-checkbox">
+                                                <input type="checkbox" name="vuln-type" value="open_redirect" checked>
+                                                <span>↪️ Open Redirect</span>
+                                            </label>
+                                            <label class="vuln-checkbox">
+                                                <input type="checkbox" name="vuln-type" value="business_logic" checked>
+                                                <span>🧩 Logic Bugs</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </details>
+
+
+                                <div class="scan-options">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="dry-run">
+                                        <span class="checkmark"></span>
+                                        Dry Run (no actual requests)
+                                    </label>
+                                </div>
+                                <button type="submit" class="scan-btn" id="scan-btn">
+                                    <span class="btn-icon">🚀</span>
+                                    <span class="btn-text">Start Scan</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Scan Status -->
+                        <div class="scan-status" id="scan-status" style="display: none;">
+                            <div class="status-header">
+                                <div class="status-indicator">
+                                    <span class="status-pulse"></span>
+                                    <span class="status-text" id="status-text">Initializing...</span>
+                                </div>
+                                <span class="status-time" id="status-time">0s</span>
+                            </div>
+                            <div class="status-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress-fill"></div>
+                                </div>
+                                <p class="progress-message" id="progress-message">Starting scan...</p>
+                            </div>
+                            <div class="status-target" id="status-target"></div>
+
+                            <!-- FIX 2: Stop Scan Button -->
+                            <button type="button" id="stop-btn" class="stop-btn" onclick="stopScan()">
+                                ⬛ Stop Scan
+                            </button>
+                        </div>
+
+                        <!-- Results Preview -->
+                        <div class="scan-results" id="scan-results" style="display: none;">
+                            <div class="results-header">
+                                <h4>📊 Scan Complete</h4>
+                                <a href="/" id="view-full-results" class="results-link">View Full Report
+                                    →</a>
+                            </div>
+                            <div class="results-grid">
+                                <div class="result-stat found">
+                                    <span class="result-count" id="found-count">0</span>
+                                    <span class="result-label">Found</span>
+                                </div>
+                                <div class="result-stat blocked">
+                                    <span class="result-count" id="blocked-count">0</span>
+                                    <span class="result-label">Blocked</span>
+                                </div>
+                                <div class="result-stat failed">
+                                    <span class="result-count" id="failed-count">0</span>
+                                    <span class="result-label">Failed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Vulnerability Checklist -->
+                <div class="vuln-checklist-panel" id="vuln-panel" style="display: none;">
+                    <div class="panel-header">
+                        <h3>🛡️ Vulnerability Checklist</h3>
+                        <span class="panel-stats" id="panel-stats">0/0</span>
+                    </div>
+                    <div class="vuln-list" id="vuln-list">
+                        <!-- Vulnerability items will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Runs -->
+            <div class="recent-runs" id="recent-runs">
+                <h3>Recent Scans</h3>
+                <div class="runs-list" id="runs-list">
+                    <p class="no-runs">No scans yet. Start your first scan above!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Core <span class="gradient-text">Capabilities</span></h2>
+            <p class="section-subtitle">Comprehensive security testing powered by artificial intelligence</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>ML Vulnerability Prediction</h3>
+                    <p>Trained classifier that predicts vulnerability likelihood based on response patterns and behavior
+                        analysis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Intelligent Reconnaissance</h3>
+                    <p>Automated crawling, entity extraction, and behavioral profiling with trust boundary mapping.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Hypothesis Engine</h3>
+                    <p>Generates structured vulnerability hypotheses with confidence scores and required verification
+                        checks.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Attack Chaining</h3>
+                    <p>Correlates individual findings to discover high-impact vulnerability chains and escalation paths.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Smart Rate Control</h3>
+                    <p>Adaptive rate limiting with backoff strategies to avoid detection and blocking.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Automated Reporting</h3>
+                    <p>Generates detailed markdown reports with findings, PoCs, and suggested remediation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="architecture" id="architecture">
+        <div class="container">
+            <h2 class="section-title">System <span class="gradient-text">Architecture</span></h2>
+            <p class="section-subtitle">Multi-layered scanning pipeline for thorough security analysis</p>
+
+            <div class="architecture-diagram">
+                <div class="arch-layer">
+                    <div class="layer-badge">Layer 1</div>
+                    <div class="layer-content">
+                        <h4>Reconnaissance</h4>
+                        <p>Crawling • Entity Extraction • Behavioral Analysis • Trust Boundaries</p>
+                    </div>
+                </div>
+                <div class="arch-arrow">↓</div>
+                <div class="arch-layer">
+                    <div class="layer-badge">Layer 2</div>
+                    <div class="layer-content">
+                        <h4>Context Analysis</h4>
+                        <p>Application Profiling • Technology Detection • Parameter Discovery</p>
+                    </div>
+                </div>
+                <div class="arch-arrow">↓</div>
+                <div class="arch-layer">
+                    <div class="layer-badge">Layer 3</div>
+                    <div class="layer-content">
+                        <h4>Hypothesis Generation</h4>
+                        <p>ML Prediction • Vulnerability Hypotheses • Confidence Scoring</p>
+                    </div>
+                </div>
+                <div class="arch-arrow">↓</div>
+                <div class="arch-layer">
+                    <div class="layer-badge">Layer 4</div>
+                    <div class="layer-content">
+                        <h4>Execution & Verification</h4>
+                        <p>Payload Execution • Result Verification • Attack Chaining</p>
+                    </div>
+                </div>
+                <div class="arch-arrow">↓</div>
+                <div class="arch-layer output-layer">
+                    <div class="layer-badge">Output</div>
+                    <div class="layer-content">
+                        <h4>Report Generation</h4>
+                        <p>Findings • PoC Evidence • Chain Analysis • Remediation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vulnerability Types Section -->
+    <section class="vulns" id="vulns">
+        <div class="container">
+            <h2 class="section-title">Supported <span class="gradient-text">Vulnerabilities</span></h2>
+            <p class="section-subtitle">Comprehensive coverage of OWASP Top 10 and beyond</p>
+
+            <div class="vuln-grid">
+                <div class="vuln-card">
+                    <div class="vuln-icon xss">XSS</div>
+                    <h4>Cross-Site Scripting</h4>
+                    <p>Reflected, stored, and DOM-based XSS detection with context-aware payloads.</p>
+                </div>
+                <div class="vuln-card">
+                    <div class="vuln-icon sqli">SQLi</div>
+                    <h4>SQL Injection</h4>
+                    <p>Boolean-based, error-based, and time-based blind SQL injection testing.</p>
+                </div>
+                <div class="vuln-card">
+                    <div class="vuln-icon idor">IDOR</div>
+                    <h4>Insecure Direct Object Reference</h4>
+                    <p>Automated detection of broken access controls and authorization bypasses.</p>
+                </div>
+                <div class="vuln-card">
+                    <div class="vuln-icon cors">CORS</div>
+                    <h4>CORS Misconfiguration</h4>
+                    <p>Origin validation testing and credential exposure analysis.</p>
+                </div>
+                <div class="vuln-card">
+                    <div class="vuln-icon ssrf">SSRF</div>
+                    <h4>Server-Side Request Forgery</h4>
+                    <p>Detection of internal service exposure and cloud metadata access.</p>
+                </div>
+                <div class="vuln-card">
+                    <div class="vuln-icon cmd">CMD</div>
+                    <h4>Command Injection</h4>
+                    <p>OS command injection testing with various encoding techniques.</p>
+                </div>
+                <div class="vuln-card">
+                    <div class="vuln-icon upload">FILE</div>
+                    <h4>File Upload</h4>
+                    <p>Malicious file upload detection and extension bypass testing.</p>
+                </div>
+                <div class="vuln-card">
+                    <div class="vuln-icon logic">LOGIC</div>
+                    <h4>Business Logic</h4>
+                    <p>Workflow analysis and business logic flaw hypothesis generation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section class="workflow" id="workflow">
+        <div class="container">
+            <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
+            <p class="section-subtitle">Autonomous scanning pipeline from target to report</p>
+
+            <div class="workflow-steps">
+                <div class="workflow-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h4>Configure Target</h4>
+                        <p>Set your target URL, scope boundaries, and scanning preferences in YAML config.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h4>Reconnaissance</h4>
+                        <p>The crawler discovers endpoints, extracts parameters, and builds an entity graph.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h4>Analysis & Hypothesis</h4>
+                        <p>ML models analyze responses and generate vulnerability hypotheses with confidence scores.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h4>Execution</h4>
+                        <p>Payloads are executed against discovered endpoints with smart rate limiting.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h4>Verification & Chaining</h4>
+                        <p>Findings are verified and correlated to discover high-impact vulnerability chains.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">06</div>
+                    <div class="step-content">
+                        <h4>Report Generation</h4>
+                        <p>Comprehensive markdown report with findings, evidence, and remediation guidance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample Report Section -->
+    <section class="sample-report">
+        <div class="container">
+            <h2 class="section-title">Sample <span class="gradient-text">Output</span></h2>
+            <p class="section-subtitle">Auto-generated vulnerability report</p>
+
+            <div class="report-preview">
+                <div class="report-header">
+                    <span class="report-icon">📋</span>
+                    <span>report.md</span>
+                </div>
+                <pre class="report-content"><code># Bug Bounty Report — Run b3922fe2
+
+**Target:** http://testphp.vulnweb.com
+
+## Checklist
+- **xss**: BLOCKED
+- **sqli**: NOT_STARTED
+- **idor**: NOT_STARTED
+- **cors**: BLOCKED
+
+## Recon Summary
+- Endpoints discovered: 19
+- Parameters: goButton, searchFor
+
+## Suggested Vulnerability Chains
+- **XSS to Session Hijack** → Session/token theft
+- **CORS to Token Theft** → Session exfiltration</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-stack">
+        <div class="container">
+            <h2 class="section-title">Tech <span class="gradient-text">Stack</span></h2>
+            <div class="tech-items">
+                <div class="tech-item">
+                    <span class="tech-icon">🐍</span>
+                    <span>Python</span>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-icon">🤖</span>
+                    <span>Scikit-learn</span>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-icon">📡</span>
+                    <span>Requests</span>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-icon">📊</span>
+                    <span>YAML Config</span>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-icon">🔧</span>
+                    <span>BeautifulSoup</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🔐</span>
+                    <span class="logo-text">AI-Pentester</span>
+                </div>
+                <p class="footer-text">Autonomous Bug Bounty Framework</p>
+                <p class="footer-copyright">© 2026 AI-Pentester Project</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

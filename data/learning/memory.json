@@ -1,0 +1,2190 @@
+{
+  "localhost:40000/#/": {
+    "sqli": {
+      "\" OR 1=1--": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431109
+      },
+      "' OR 1=1#": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431109
+      },
+      "\" OR 1=1#": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431109
+      },
+      "' OR 1=1/*": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431109
+      },
+      "`OR 1=1--": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431109
+      },
+      "' OR 'x'='x": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431109
+      },
+      "')) OR (('1'='1": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431110
+      }
+    },
+    "cmd_injection": {
+      "cmd-safe": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1775431110
+      },
+      ";id": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431110
+      },
+      "`id`": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431110
+      },
+      "$(id)": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431110
+      }
+    },
+    "ssrf": {
+      "http://localhost": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1775431111
+      },
+      "http://169.254.169.254": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1775431111
+      },
+      "http://127.0.0.1": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431110
+      },
+      "ssrf-safe": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1775431113
+      }
+    },
+    "open_redirect": {
+      "//evil.com": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1775431111
+      },
+      "/\\evil.com": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1775431111
+      },
+      "https://evil.com": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431111
+      },
+      "open_redirect-safe": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1775431111
+      }
+    },
+    "file_upload": {
+      "shell.php": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1775431112
+      },
+      "shell.php5": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431112
+      },
+      "shell.phtml": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431112
+      },
+      "shell.phar": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431112
+      },
+      "shell.jpg.php": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431112
+      },
+      "shell.png.php": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431112
+      },
+      "shell.php%00.jpg": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431112
+      },
+      "shell.PHP": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431113
+      },
+      "shell.pHp": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1775431113
+      },
+      "shell.php.": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431113
+      },
+      "shell.php::$DATA": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431113
+      },
+      "shell.php;.jpg": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431113
+      },
+      "shell.jsp": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431113
+      },
+      "shell.jspx": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431113
+      },
+      "shell.asp": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431113
+      },
+      "shell.aspx": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431113
+      },
+      "shell.asa": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431114
+      },
+      "shell.jpg.asp": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1775431114
+      },
+      "image.svg": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431114
+      },
+      "page.html": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1775431114
+      }
+    },
+    "auth_bypass": {
+      "auth_bypass-safe": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1775431112
+      }
+    },
+    "idor": {
+      "id swap 2 -> 1": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1775431119
+      }
+    },
+    "xss": {
+      "<script>alert(1)</script>": {
+        "success": 1,
+        "failure": 0,
+        "blocked": 0,
+        "last_seen": 1775431120
+      },
+      "<script>alert('XSS')</script>": {
+        "success": 1,
+        "failure": 0,
+        "blocked": 0,
+        "last_seen": 1775431122
+      },
+      "<script>alert(document.domain)</script>": {
+        "success": 1,
+        "failure": 0,
+        "blocked": 0,
+        "last_seen": 1775431124
+      },
+      "<script>alert(document.cookie)</script>": {
+        "success": 1,
+        "failure": 0,
+        "blocked": 0,
+        "last_seen": 1775431125
+      }
+    }
+  },
+  "www.emailnator.com": {
+    "sqli": {
+      "\" OR \"1\"=\"1": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997382
+      },
+      "' OR 1=1--": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997382
+      },
+      "\" OR 1=1--": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997382
+      },
+      "' OR 1=1#": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997382
+      },
+      "\" OR 1=1#": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997382
+      },
+      "' OR 1=1/*": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997382
+      },
+      "`OR 1=1--": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997383
+      },
+      "' OR '1'='1": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777993809
+      },
+      "') OR ('1'='1": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777993810
+      },
+      "')) OR (('1'='1": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997383
+      },
+      "' OR 'x'='x": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997383
+      }
+    },
+    "cmd_injection": {
+      "`id`": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997383
+      },
+      "$(id)": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997384
+      },
+      "safe_val;": {
+        "success": 2,
+        "failure": 0,
+        "blocked": 0,
+        "last_seen": 1777993812
+      },
+      ";id": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997383
+      }
+    },
+    "ssrf": {
+      "http://localhost": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 6,
+        "last_seen": 1777997384
+      },
+      "http://169.254.169.254": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 6,
+        "last_seen": 1777997385
+      },
+      "http://127.0.0.1": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997384
+      },
+      "http://169.254.169.254/latest/meta-data/": {
+        "success": 3,
+        "failure": 0,
+        "blocked": 0,
+        "last_seen": 1777997385
+      }
+    },
+    "open_redirect": {
+      "//evil.com": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 6,
+        "last_seen": 1777997385
+      },
+      "/\\evil.com": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 6,
+        "last_seen": 1777997385
+      },
+      "https://evil.com": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997385
+      },
+      "open_redirect-safe": {
+        "success": 0,
+        "failure": 3,
+        "blocked": 0,
+        "last_seen": 1777997451
+      }
+    },
+    "file_upload": {
+      "shell.php": {
+        "success": 0,
+        "failure": 3,
+        "blocked": 0,
+        "last_seen": 1777997385
+      },
+      "shell.php5": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997385
+      },
+      "shell.phtml": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997385
+      },
+      "shell.phar": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997386
+      },
+      "shell.jpg.php": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997386
+      },
+      "shell.png.php": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997386
+      },
+      "shell.php%00.jpg": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997386
+      },
+      "shell.PHP": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997386
+      },
+      "shell.pHp": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 2,
+        "last_seen": 1777997386
+      },
+      "shell.php.": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997386
+      },
+      "shell.php::$DATA": {
+        "success": 0,
+        "failure": 2,
+        "blocked": 1,
+        "last_seen": 1777997386
+      },
+      "shell.php;.jpg": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777993814
+      },
+      "shell.jsp": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997387
+      },
+      "shell.jspx": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997387
+      },
+      "shell.asp": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997387
+      },
+      "shell.aspx": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997387
+      },
+      "shell.asa": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997387
+      },
+      "shell.jpg.asp": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997387
+      },
+      "image.svg": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 2,
+        "last_seen": 1777997387
+      },
+      "page.html": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997387
+      },
+      "page.shtml": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1777993815
+      }
+    },
+    "xss": {
+      "<script>alert(1)</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997389
+      },
+      "<script>alert('XSS')</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997388
+      },
+      "<script>alert(document.domain)</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997390
+      },
+      "<script>alert(document.cookie)</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997389
+      },
+      "<script>confirm(1)</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 3,
+        "last_seen": 1777997391
+      },
+      "<script>prompt(1)</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997391
+      },
+      "\"><script>alert(1)</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997392
+      },
+      "'><script>alert(1)</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997392
+      },
+      "</title><script>alert(1)</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997393
+      },
+      "</script><script>alert(1)</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997393
+      },
+      "</style><script>alert(1)</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997394
+      },
+      "</textarea><script>alert(1)</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997394
+      },
+      "'><script>alert(document.domain)</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997395
+      },
+      "\"><script>alert(document.domain)</script>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997396
+      },
+      "<img src=x onerror=alert(document.domain)>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997397
+      },
+      "<img src=x onerror=alert(1)>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997397
+      },
+      "<img src=x onerror=alert(document.cookie)>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997399
+      },
+      "'><img src=x onerror=alert(1)>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997399
+      },
+      "\"><img src=x onerror=alert(1)>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997399
+      },
+      "<img src=\"x\" onerror=\"alert(1)\">": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997400
+      },
+      "<img/src=x/onerror=alert(1)>": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997400
+      }
+    },
+    "auth_bypass": {
+      "auth_bypass-safe": {
+        "success": 0,
+        "failure": 3,
+        "blocked": 0,
+        "last_seen": 1777997397
+      }
+    },
+    "lfi": {
+      "....//....//....//etc/passwd": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997426
+      },
+      "..%2f..%2f..%2fetc/passwd": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997426
+      },
+      "/etc/passwd": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997426
+      },
+      "C:\\Windows\\win.ini": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997426
+      },
+      "..\\..\\..\\..\\Windows\\win.ini": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1777993902
+      },
+      "lfi-safe": {
+        "success": 0,
+        "failure": 3,
+        "blocked": 0,
+        "last_seen": 1777997451
+      }
+    },
+    "path_traversal": {
+      "..%2f..%2f..%2fetc/passwd": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1777993902
+      },
+      "..\\/..\\/..\\/etc/passwd": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1777993903
+      },
+      "..%5c..%5c..%5cetc/passwd": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997452
+      },
+      "path_traversal-safe": {
+        "success": 0,
+        "failure": 4,
+        "blocked": 0,
+        "last_seen": 1777997473
+      }
+    },
+    "idor": {
+      "IDOR swap 3 <-> 2": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1777993903
+      },
+      "IDOR swap 4 <-> 5": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1777997427
+      }
+    },
+    "business_logic": {
+      "logic:None": {
+        "success": 0,
+        "failure": 2,
+        "blocked": 0,
+        "last_seen": 1777997452
+      }
+    },
+    "cors": {
+      "null": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 2,
+        "last_seen": 1777997452
+      },
+      "CORS origin probes": {
+        "success": 0,
+        "failure": 2,
+        "blocked": 0,
+        "last_seen": 1777997469
+      }
+    },
+    "csrf": {
+      "csrf-safe": {
+        "success": 0,
+        "failure": 2,
+        "blocked": 0,
+        "last_seen": 1777997453
+      }
+    },
+    "brute_force": {
+      "6 rapid login attempts": {
+        "success": 2,
+        "failure": 0,
+        "blocked": 0,
+        "last_seen": 1777997456
+      }
+    },
+    "information_disclosure": {
+      "info-disclosure-probe": {
+        "success": 2,
+        "failure": 0,
+        "blocked": 0,
+        "last_seen": 1777997458
+      }
+    },
+    "security_headers": {
+      "security-headers-probe": {
+        "success": 2,
+        "failure": 0,
+        "blocked": 0,
+        "last_seen": 1777997459
+      }
+    }
+  },
+  "www.flipkart.com/account/login?signup=true&ret=/": {
+    "business_logic": {
+      "{'workflow': 'checkout', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/pages/paymentsecurity?otracker=footer_navlinks', 'https://www.flipkart.com/viewcart?marketplace=FLIPKART', 'https://www.flipkart.com/pages/payments', 'https://www.flipkart.com/account/orders'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778694615
+      },
+      "logic:checkout": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1778695046
+      }
+    },
+    "idor": {
+      "0": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 4,
+        "last_seen": 1778695047
+      }
+    }
+  },
+  "www.flipkart.com/pages/payments": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695042
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695042
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695042
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695043
+      }
+    }
+  },
+  "www.flipkart.com/account/orders?link=home_orders": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695043
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695043
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695043
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695043
+      }
+    }
+  },
+  "www.flipkart.com/account/login?ret=/": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695044
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695044
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695044
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695044
+      }
+    }
+  },
+  "www.flipkart.com/account/?rd=0&link=home_account": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695045
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695045
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695045
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695045
+      }
+    }
+  },
+  "www.flipkart.com/searchsuggestion": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695047
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695048
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695048
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695048
+      }
+    }
+  },
+  "www.flipkart.com/account/rewards?link=home_rewards": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695048
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695049
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695049
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695049
+      }
+    }
+  },
+  "www.flipkart.com/pages/paymentsecurity?otracker=footer_navlinks": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695049
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695050
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695050
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695050
+      }
+    }
+  },
+  "www.flipkart.com/account/orders": {
+    "business_logic": {
+      "logic:checkout": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1778695050
+      }
+    },
+    "idor": {
+      "0": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 4,
+        "last_seen": 1778695051
+      }
+    }
+  },
+  "www.flipkart.com/user-address-v3": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695052
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695052
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695052
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695052
+      }
+    }
+  },
+  "www.flipkart.com/account/": {
+    "business_logic": {
+      "logic:checkout": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1778695053
+      }
+    },
+    "idor": {
+      "0": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 3,
+        "last_seen": 1778695055
+      }
+    }
+  },
+  "www.flipkart.com/account/rewards": {
+    "business_logic": {
+      "logic:checkout": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1778695055
+      }
+    },
+    "idor": {
+      "0": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 3,
+        "last_seen": 1778695057
+      }
+    }
+  },
+  "www.flipkart.com/account/login": {
+    "business_logic": {
+      "logic:checkout": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1778695058
+      }
+    },
+    "idor": {
+      "-1": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 4,
+        "last_seen": 1778695059
+      }
+    }
+  },
+  "www.flipkart.com/user-address-v4": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695059
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695059
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695060
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695060
+      }
+    }
+  },
+  "www.flipkart.com/q/cardigans": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695061
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1778695061
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695061
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695061
+      }
+    }
+  },
+  "www.flipkart.com/grocery/basket": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695062
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695062
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695062
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695062
+      }
+    }
+  },
+  "www.flipkart.com/user-address": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695063
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695063
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695063
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1778695063
+      }
+    }
+  },
+  "www.flipkart.com/toys-baby-2025-new-at-store": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695064
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695064
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695064
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695064
+      }
+    }
+  },
+  "www.flipkart.com/computers/computer-peripherals/projectors/lumio~brand/pr?sid=6bo,tia,1hx&otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695065
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695065
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695065
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695066
+      }
+    }
+  },
+  "www.flipkart.com/mobiles/feature-phones~type/pr?sid=tyy,4io&otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695066
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695067
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695067
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1778695067
+      }
+    }
+  },
+  "www.flipkart.com/spoyl-ff-store?param=0986&ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InRpdGxlIjp7Im11bHRpVmFsdWVkQXR0cmlidXRlIjp7ImtleSI6InRpdGxlIiwiaW5mZXJlbmNlVHlwZSI6IlRJVExFIiwidmFsdWVzIjpbIkZvciBHZW5aIl0sInZhbHVlVHlwZSI6Ik1VTFRJX1ZBTFVFRCJ9fX19fQ%3D%3D&BU=Mixed": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695067
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695068
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695068
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695068
+      }
+    }
+  },
+  "www.flipkart.com/mobiles/512-gb~capacity/pr?sid=tyy,4io&otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695068
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695069
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695069
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695069
+      }
+    }
+  },
+  "www.flipkart.com/home-decor/wall-decor-items/pr?sid=arb,a77&otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695069
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695070
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695070
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695070
+      }
+    }
+  },
+  "www.flipkart.com/blazers/pr?sid=clo,upk,fj9,qd3&otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695070
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695071
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695071
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695071
+      }
+    }
+  },
+  "www.flipkart.com/mens-jeans-at-store?otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695071
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695072
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695072
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695072
+      }
+    }
+  },
+  "www.flipkart.com/food-nutrition/snacks-nibbles/cookies-biscuits/pr?sid=7jv,x9l,q9u&otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695072
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695073
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695073
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695073
+      }
+    }
+  },
+  "www.flipkart.com/q/hoodies-for-women?otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695073
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695074
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695074
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695074
+      }
+    }
+  },
+  "www.flipkart.com/mens-footwear/casual-shoes/pr?sid=osp,cil,e1f&otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695074
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695075
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695075
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695075
+      }
+    }
+  },
+  "www.flipkart.com/campus-royce-2-running-shoes-men/p/itm32fb806935e08?otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695075
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695076
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695076
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695076
+      }
+    }
+  },
+  "www.flipkart.com/summer-sale-store?otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695076
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695077
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695077
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695077
+      }
+    }
+  },
+  "www.flipkart.com/mamaearth-anti-hair-fall-shampoo-rosemary-methi-dana-reduce-hair-loss-breakage/p/itmb2e49d7f5711c?otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695077
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695078
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695078
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695078
+      }
+    }
+  },
+  "www.flipkart.com/communication-preferences/push?t=all": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695078
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695079
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695079
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695079
+      }
+    }
+  },
+  "www.flipkart.com/q/modular-kitchen-cabinets": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695079
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695080
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695080
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695080
+      }
+    }
+  },
+  "www.flipkart.com/realme-p4x-5g-matte-silver-256-gb/p/itm575b1540859e4?pid=MOBHHWGMCXRADYYG&ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InNvdXJjZUNvbnRlbnRUeXBlIjp7InNpbmdsZVZhbHVlQXR0cmlidXRlIjp7ImtleSI6InNvdXJjZUNvbnRlbnRUeXBlIiwiaW5mZXJlbmNlVHlwZSI6IlNDVCIsInZhbHVlIjoiQUQiLCJ2YWx1ZVR5cGUiOiJTSU5HTEVfVkFMVUVEIn19fX19&nnc=FESCJEBW6M8J_AD&BU=Mixed": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695080
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695081
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695081
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695081
+      }
+    }
+  },
+  "www.flipkart.com/grocery/staples/dals-pulses/pr?sid=73z,bpe,3uv&marketplace=GROCERY&otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695081
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695082
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695082
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695082
+      }
+    }
+  },
+  "www.flipkart.com/iqoo-neo-10r-5g-raging-blue-128-gb/p/itmdeb505b0113f2?otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695082
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695083
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695083
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695083
+      }
+    }
+  },
+  "www.flipkart.com/watches/pr?sid=r18": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695083
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695083
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695084
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695084
+      }
+    }
+  },
+  "www.facebook.com/flipkart": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695086
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1778695086
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695086
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695086
+      }
+    }
+  },
+  "seller.flipkart.com/sell-online/?utm_source=fkwebsite&utm_medium=websitedirect": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695088
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1778695089
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695089
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695089
+      }
+    }
+  },
+  "www.flipkart.com/q/mens-winter-jackets?otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695089
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695090
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695090
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695090
+      }
+    }
+  },
+  "www.flipkart.com/air-fryers/pr?sid=j9e,m38,j1e&otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695090
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695091
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695091
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695091
+      }
+    }
+  },
+  "www.flipkart.com/grocery/household-care/pr?sid=73z,cwl&marketplace=GROCERY&otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695091
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695091
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695092
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695092
+      }
+    }
+  },
+  "www.flipkart.com/redmi-note-15-se-5g-crimson-reserve-128-gb/p/itm4981d1c5313df?otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695092
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695093
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695093
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695093
+      }
+    }
+  },
+  "www.flipkart.com/televisions/sony~brand/pr?sid=ckf,czl&otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695093
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 1,
+        "blocked": 0,
+        "last_seen": 1778695094
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695094
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695094
+      }
+    }
+  },
+  "www.flipkart.com/oppo-reno15-pro-5g-cocoa-brown-256-gb/p/itm157c5e40707f0?otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695095
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695095
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695095
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695095
+      }
+    }
+  },
+  "www.flipkart.com/all/~cs-9ee86cabf0103cd8cdebf9e1b4facdc3/pr?sid=clo%2Ccfv%2Ccib%2Cjks&marketplace=FLIPKART&ctx=eyJjYXJkQ29udGV4dCI6eyJhdHRyaWJ1dGVzIjp7InZhbHVlQ2FsbG91dCI6eyJtdWx0aVZhbHVlZEF0dHJpYnV0ZSI6eyJrZXkiOiJ2YWx1ZUNhbGxvdXQiLCJpbmZlcmVuY2VUeXBlIjoiVkFMVUVfQ0FMTE9VVCIsInZhbHVlcyI6WyJVcCB0byA4MCUgT2ZmIl0sInZhbHVlVHlwZSI6Ik1VTFRJX1ZBTFVFRCJ9fSwiaGVyb1BpZCI6eyJzaW5nbGVWYWx1ZUF0dHJpYnV0ZSI6eyJrZXkiOiJoZXJvUGlkIiwiaW5mZXJlbmNlVHlwZSI6IlBJRCIsInZhbHVlIjoiS1RBR1lCWk1SR1JRR05UOCIsInZhbHVlVHlwZSI6IlNJTkdMRV9WQUxVRUQifX0sImRpc2NvdW50X3JhbmdlX3YxIjp7InJhbmdlVmFsdWVkQXR0cmlidXRlIjp7ImtleSI6ImRpc2NvdW50X3JhbmdlX3YxIiwiaW5mZXJlbmNlVHlwZSI6IkZBQ0VUIiwibWluIjpudWxsLCJtYXgiOjgwLjAsInZhbHVlVHlwZSI6IlJBTkdFX1ZBTFVFRCJ9fSwidGl0bGUiOnsibXVsdGlWYWx1ZWRBdHRyaWJ1dGUiOnsia2V5IjoidGl0bGUiLCJpbmZlcmVuY2VUeXBlIjoiVElUTEUiLCJ2YWx1ZXMiOlsiTWVuJ3MgS3VydGFzIl0sInZhbHVlVHlwZSI6Ik1VTFRJX1ZBTFVFRCJ9fX19fQ%3D%3D&BU=Mixed": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695096
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695096
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695096
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695096
+      }
+    }
+  },
+  "www.flipkart.com/poco-c85x-emerald-green-64-gb/p/itm96bce2b7909b7?otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695097
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695097
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695097
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695097
+      }
+    }
+  },
+  "www.flipkart.com/pages/returnpolicy?otracker=footer_navlinks": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695098
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695098
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695098
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695098
+      }
+    }
+  },
+  "www.flipkart.com/furniture/beds-more/beds/pr?sid=wwe,7p7,4yf&otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695099
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695099
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695099
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695099
+      }
+    }
+  },
+  "www.flipkart.com/jewellery/pr?sid=mcr&otracker=undefined_footer": {
+    "business_logic": {
+      "{'workflow': 'profile', 'steps': ['https://www.flipkart.com/account/orders?link=home_orders', 'https://www.flipkart.com/account/login?ret=/', 'https://www.flipkart.com/account/?rd=0&link=home_account', 'https://www.flipkart.com/account/login?signup=true&ret=/', 'https://www.flipkart.com/account/rewards?link=home_rewards', 'https://www.flipkart.com/account/orders', 'https://www.flipkart.com/account/', 'https://www.flipkart.com/account/rewards', 'https://www.flipkart.com/account/login'], 'probes': ['skip_step', 'replay_once']}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695100
+      },
+      "%7B%27workflow%27%3A%20%27profile%27%2C%20%27steps%27%3A%20%5B%27https%3A//www.flipkart.com/account/orders%3Flink%3Dhome_orders%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/%3Frd%3D0%26link%3Dhome_account%27%2C%20%27https%3A//www.flipkart.com/account/login%3Fsignup%3Dtrue%26ret%3D/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%3Flink%3Dhome_rewards%27%2C%20%27https%3A//www.flipkart.com/account/orders%27%2C%20%27https%3A//www.flipkart.com/account/%27%2C%20%27https%3A//www.flipkart.com/account/rewards%27%2C%20%27https%3A//www.flipkart.com/account/login%27%5D%2C%20%27probes%27%3A%20%5B%27skip_step%27%2C%20%27replay_once%27%5D%7D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695100
+      },
+      "%257B%2527workflow%2527%253A%2520%2527profile%2527%252C%2520%2527steps%2527%253A%2520%255B%2527https%253A//www.flipkart.com/account/orders%253Flink%253Dhome_orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/%253Frd%253D0%2526link%253Dhome_account%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%253Fsignup%253Dtrue%2526ret%253D/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%253Flink%253Dhome_rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/orders%2527%252C%2520%2527https%253A//www.flipkart.com/account/%2527%252C%2520%2527https%253A//www.flipkart.com/account/rewards%2527%252C%2520%2527https%253A//www.flipkart.com/account/login%2527%255D%252C%2520%2527probes%2527%253A%2520%255B%2527skip_step%2527%252C%2520%2527replay_once%2527%255D%257D": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695100
+      },
+      "{&#x27;workflow&#x27;: &#x27;profile&#x27;, &#x27;steps&#x27;: [&#x27;https://www.flipkart.com/account/orders?link=home_orders&#x27;, &#x27;https://www.flipkart.com/account/login?ret=/&#x27;, &#x27;https://www.flipkart.com/account/?rd=0&amp;link=home_account&#x27;, &#x27;https://www.flipkart.com/account/login?signup=true&amp;ret=/&#x27;, &#x27;https://www.flipkart.com/account/rewards?link=home_rewards&#x27;, &#x27;https://www.flipkart.com/account/orders&#x27;, &#x27;https://www.flipkart.com/account/&#x27;, &#x27;https://www.flipkart.com/account/rewards&#x27;, &#x27;https://www.flipkart.com/account/login&#x27;], &#x27;probes&#x27;: [&#x27;skip_step&#x27;, &#x27;replay_once&#x27;]}": {
+        "success": 0,
+        "failure": 0,
+        "blocked": 1,
+        "last_seen": 1778695100
+      }
+    }
+  }
+}

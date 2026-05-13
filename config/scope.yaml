@@ -1,0 +1,20 @@
+allowed:
+  # Added wildcard * to allow all domains
+  domains:
+    - "*"
+    - testphp.vulnweb.com
+    - vulnweb.com
+    - juice-shop.owasp.org
+    - owasp.org
+    - 127.0.0.1
+    - localhost
+    - emailnator.com
+    - www.emailnator.com
+    - www.flipkart.com
+  allow_subdomains: true
+  allowed_protocols:
+    - https
+    - http
+
+blocked:
+  paths: []  # No blocked paths

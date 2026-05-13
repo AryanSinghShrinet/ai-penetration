@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chain Suggestions</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .chain-box {
+            border: 1px solid #aaa;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 5px solid #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/run/{{ run.run_id }}">Back to Run</a>
+    <h2>Suggested Vulnerability Chains</h2>
+
+    {% if not chains %}
+    <p>No chains suggested for this run.</p>
+    {% else %}
+    {% for c in chains %}
+    <div class="chain-box">
+        <h3>{{ c.chain }}</h3>
+        <p><b>Impact:</b> {{ c.impact }}</p>
+        <p><b>Reason:</b> {{ c.reason }}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <h3>Attack Graph Nodes</h3>
+    <pre>{{ graph | tojson(indent=2) }}</pre>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.env
+
+# Project specific
+data/logs/
+data/run_state/
+data/scanner_state/
+data/ml_training/
+data/*.db
+data/*.pkl
+results/
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

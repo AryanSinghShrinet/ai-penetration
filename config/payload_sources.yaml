@@ -1,0 +1,12 @@
+sources:
+  payloadsallthethings:
+    repo: "https://raw.githubusercontent.com/swisskyrepo/PayloadsAllTheThings/master"
+    enabled: true
+
+  seclists:
+    repo: "https://raw.githubusercontent.com/danielmiessler/SecLists/master"
+    enabled: true
+
+sync:
+  interval_hours: 1
+  experimental: false

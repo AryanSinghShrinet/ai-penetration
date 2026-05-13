@@ -1,0 +1,17 @@
+dry_run: false
+output:
+  log_level: INFO
+  report_dir: reports
+proxy:
+  enabled: false
+  host: 127.0.0.1
+  port: 8080
+  verify_ssl: false
+scan:
+  depth: 3
+  follow_redirects: true
+  max_requests: 2000
+  request_delay: 0.3
+  threads: 4
+  timeout: 15
+target: https://www.flipkart.com

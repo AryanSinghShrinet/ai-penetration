@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Learning Memory</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        h3 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/">Back to Home</a>
+    <h2>Global Learning Memory</h2>
+
+    {% if not memory %}
+    <p>No learning data available.</p>
+    {% else %}
+    {% for target, vulns in memory.items() %}
+    <h3>Target: {{ target }}</h3>
+    {% for vuln, payloads in vulns.items() %}
+    <h4>{{ vuln }}</h4>
+    <ul>
+        {% for payload, stats in payloads.items() %}
+        <li>
+            <code>{{ payload }}</code> <br>
+            Success: {{ stats.success }} | Blocked: {{ stats.blocked }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+    {% endfor %}
+    {% endif %}
+</body>
+
+</html>

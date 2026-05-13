@@ -1,0 +1,25 @@
+{
+  "nodes": [
+    "login",
+    "login",
+    "login",
+    "login",
+    "cart",
+    "pay",
+    "pay",
+    "pay",
+    "pay"
+  ],
+  "edges": [
+    {
+      "from": "login",
+      "to": "cart",
+      "type": "inferred_flow"
+    },
+    {
+      "from": "cart",
+      "to": "pay",
+      "type": "inferred_flow"
+    }
+  ]
+}

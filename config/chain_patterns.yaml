@@ -1,0 +1,128 @@
+# Attack Chain Patterns Configuration
+
+chains:
+  # Authentication & Access Control Chains
+  - name: "SQLi to Admin Access"
+    steps:
+      - vuln: sqli
+        action: "Extract admin credentials"
+      - vuln: auth_bypass
+        action: "Login as admin"
+    severity: critical
+    impact: "Full application compromise"
+    
+  - name: "Auth Bypass to Privilege Escalation"
+    steps:
+      - vuln: auth_bypass
+        action: "Bypass authentication"
+      - vuln: idor
+        action: "Access other users' data"
+    severity: critical
+    impact: "Unauthorized data access"
+
+  # Client-Side Chains
+  - name: "XSS to Session Hijack"
+    steps:
+      - vuln: xss
+        action: "Inject malicious script"
+      - vuln: cors
+        action: "Exfiltrate session token"
+    severity: high
+    impact: "Session/token theft"
+    
+  - name: "Stored XSS to Account Takeover"
+    steps:
+      - vuln: xss
+        action: "Store persistent XSS"
+      - vuln: business_logic
+        action: "Trigger admin action"
+    severity: critical
+    impact: "Mass account compromise"
+
+  # Server-Side Chains
+  - name: "SSRF to Cloud Metadata"
+    steps:
+      - vuln: ssrf_indicator
+        action: "Request metadata endpoint"
+      - vuln: cloud_metadata
+        action: "Extract credentials"
+    severity: critical
+    impact: "Cloud infrastructure compromise"
+    
+  - name: "SSRF to Internal Network"
+    steps:
+      - vuln: ssrf_indicator
+        action: "Scan internal network"
+      - vuln: internal_service
+        action: "Access internal services"
+    severity: high
+    impact: "Internal network access"
+
+  - name: "XXE to SSRF to RCE"
+    steps:
+      - vuln: xxe
+        action: "Parse malicious XML"
+      - vuln: ssrf_indicator
+        action: "Request internal service"
+      - vuln: cmd_injection
+        action: "Execute commands"
+    severity: critical
+    impact: "Remote code execution"
+
+  # File-Based Chains
+  - name: "IDOR to File Upload RCE"
+    steps:
+      - vuln: idor
+        action: "Access admin upload panel"
+      - vuln: file_upload
+        action: "Upload web shell"
+    severity: critical
+    impact: "Remote code execution"
+    
+  - name: "Path Traversal to Config Leak"
+    steps:
+      - vuln: path_traversal
+        action: "Read sensitive files"
+      - vuln: credential_exposure
+        action: "Extract credentials"
+    severity: high
+    impact: "Credential theft"
+
+  # Logic Exploitation Chains
+  - name: "Business Logic to Financial Fraud"
+    steps:
+      - vuln: business_logic
+        action: "Manipulate transaction flow"
+      - vuln: idor
+        action: "Transfer to attacker account"
+    severity: critical
+    impact: "Financial loss"
+    
+  - name: "Race Condition to Double Spend"
+    steps:
+      - vuln: race_condition
+        action: "Concurrent requests"
+      - vuln: business_logic
+        action: "Multiple reward claims"
+    severity: high
+    impact: "Resource abuse"
+
+  # OAuth/SSO Chains
+  - name: "OAuth State Bypass to Account Takeover"
+    steps:
+      - vuln: oauth_logic
+        action: "Exploit missing state param"
+      - vuln: open_redirect
+        action: "Steal authorization code"
+    severity: critical
+    impact: "Account takeover"
+
+  # Injection Chains
+  - name: "SQLi to Command Injection"
+    steps:
+      - vuln: sqli
+        action: "Write file via INTO OUTFILE"
+      - vuln: file_upload
+        action: "Execute uploaded file"
+    severity: critical
+    impact: "Remote code execution"

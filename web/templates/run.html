@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run {{ run.run_id[:8] }} | AI-Pentester</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <a href="/" class="back-link">← Back to Dashboard</a>
+            <h1 class="page-title">Run <span class="highlight">{{ run.run_id[:8] }}</span></h1>
+        </div>
+
+        <div class="run-info-box">
+            <div class="run-info-grid">
+                <div class="info-item">
+                    <h4>Target</h4>
+                    <p>🎯 {{ run.target }}</p>
+                </div>
+                <div class="info-item">
+                    <h4>Run ID</h4>
+                    <p>{{ run.run_id }}</p>
+                </div>
+                <div class="info-item">
+                    <h4>Authenticated</h4>
+                    <p>{{ '✅ Yes' if run.authenticated else '❌ No' }}</p>
+                </div>
+            </div>
+        </div>
+
+        {% if run.checklist %}
+        {% set found = run.checklist.values()|select('equalto', 'FOUND')|list|length %}
+        {% set blocked = run.checklist.values()|select('equalto', 'BLOCKED')|list|length %}
+        {% set failed = run.checklist.values()|select('equalto', 'FAILED')|list|length %}
+
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-value found">{{ found }}</div>
+                <div class="stat-label">Found</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value blocked">{{ blocked }}</div>
+                <div class="stat-label">Blocked</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value failed">{{ failed }}</div>
+                <div class="stat-label">Failed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value total">{{ run.checklist|length }}</div>
+                <div class="stat-label">Total Tests</div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="section-header">
+            <h2 class="section-title">🛡️ Vulnerability Checklist</h2>
+        </div>
+
+        <div class="vuln-grid">
+            {% for vuln, status in run.checklist.items() %}
+            <a href="/run/{{ run.run_id }}/vuln/{{ vuln }}" class="vuln-card">
+                <div class="vuln-card-header">
+                    <span class="vuln-icon">
+                        {% if 'xss' in vuln.lower() %}💉
+                        {% elif 'sqli' in vuln.lower() or 'sql' in vuln.lower() %}🗃️
+                        {% elif 'idor' in vuln.lower() %}🔓
+                        {% elif 'cors' in vuln.lower() %}🌐
+                        {% elif 'ssrf' in vuln.lower() %}🔗
+                        {% elif 'xxe' in vuln.lower() %}📄
+                        {% elif 'ldap' in vuln.lower() %}📁
+                        {% elif 'file' in vuln.lower() or 'upload' in vuln.lower() %}📤
+                        {% elif 'cmd' in vuln.lower() or 'command' in vuln.lower() %}💻
+                        {% elif 'lfi' in vuln.lower() %}📂
+                        {% elif 'path' in vuln.lower() %}🛤️
+                        {% elif 'ssti' in vuln.lower() %}🔧
+                        {% elif 'auth' in vuln.lower() %}🔐
+                        {% elif 'logic' in vuln.lower() %}🧩
+                        {% elif 'redirect' in vuln.lower() %}↪️
+                        {% elif 'csrf' in vuln.lower() %}🔄
+                        {% elif 'header' in vuln.lower() %}📋
+                        {% else %}🔍{% endif %}
+                    </span>
+                    <span class="vuln-name">{{ vuln.upper() }}</span>
+                </div>
+                <span class="vuln-status {{ status }}">{{ status }}</span>
+            </a>
+            {% endfor %}
+        </div>
+
+        <!-- Reconnaissance Results Section -->
+        {% if run.layer_2 and run.layer_2.recon %}
+        {% set recon = run.layer_2.recon %}
+        <div class="section-header" style="margin-top: 40px;">
+            <h2 class="section-title">🔍 Reconnaissance Results</h2>
+        </div>
+
+        <div class="recon-grid">
+            <!-- Endpoints -->
+            <div class="recon-card">
+                <div class="recon-header">
+                    <span class="recon-icon">🌐</span>
+                    <span class="recon-title">Endpoints Found</span>
+                    <span class="recon-count">{{ (recon.endpoints or [])|length }}</span>
+                </div>
+                <div class="recon-list" id="endpoints-list">
+                    {% for endpoint in (recon.endpoints or [])[:10] %}
+                    <div class="recon-item">{{ endpoint }}</div>
+                    {% endfor %}
+                    {% if (recon.endpoints or [])|length > 10 %}
+                    <div class="recon-more" id="endpoints-more-btn" onclick="toggleEndpoints()"
+                        style="cursor: pointer;">
+                        ▼ Show +{{ (recon.endpoints or [])|length - 10 }} more endpoints
+                    </div>
+                    <div id="endpoints-hidden" style="display: none;">
+                        {% for endpoint in (recon.endpoints or [])[10:] %}
+                        <div class="recon-item">{{ endpoint }}</div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if not recon.endpoints %}
+                    <div class="recon-empty">No endpoints discovered</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Forms -->
+            <div class="recon-card">
+                <div class="recon-header">
+                    <span class="recon-icon">📝</span>
+                    <span class="recon-title">Forms Detected</span>
+                    <span class="recon-count">{{ (recon.forms or [])|length }}</span>
+                </div>
+                <div class="recon-list">
+                    {% for form in (recon.forms or [])[:5] %}
+                    <div class="recon-item">
+                        <strong>{{ form.action or 'Unknown' }}</strong>
+                        <span class="form-method">{{ form.method or 'GET' }}</span>
+                    </div>
+                    {% endfor %}
+                    {% if not recon.forms %}
+                    <div class="recon-empty">No forms detected</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Parameters -->
+            <div class="recon-card">
+                <div class="recon-header">
+                    <span class="recon-icon">🔧</span>
+                    <span class="recon-title">Parameters</span>
+                    <span class="recon-count">{{ (recon.parameters or [])|length }}</span>
+                </div>
+                <div class="recon-list" id="params-list">
+                    {% for param in (recon.parameters or [])[:15] %}
+                    <span class="param-tag">{{ param }}</span>
+                    {% endfor %}
+                    {% if (recon.parameters or [])|length > 15 %}
+                    <span class="param-tag more" id="params-more-btn" onclick="toggleParams()" style="cursor: pointer;">
+                        +{{ (recon.parameters or [])|length - 15 }} more
+                    </span>
+                    <div id="params-hidden" style="display: none;">
+                        {% for param in (recon.parameters or [])[15:] %}
+                        <span class="param-tag">{{ param }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if not recon.parameters %}
+                    <div class="recon-empty">No parameters found</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Technologies -->
+            <div class="recon-card">
+                <div class="recon-header">
+                    <span class="recon-icon">⚙️</span>
+                    <span class="recon-title">Technologies</span>
+                    <span class="recon-count">{{ (recon.technologies or [])|length }}</span>
+                </div>
+                <div class="recon-list">
+                    {% for tech in (recon.technologies or []) %}
+                    <span class="tech-tag">{{ tech }}</span>
+                    {% endfor %}
+                    {% if not recon.technologies %}
+                    <div class="recon-empty">No technologies detected</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="actions-section">
+            <h3 class="section-title" style="margin-bottom: 16px;">🔗 Actions</h3>
+            <a href="/run/{{ run.run_id }}/chains" class="action-btn">⛓️ View Chain Suggestions</a>
+            <a href="/" class="action-btn secondary">← Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleEndpoints() {
+            const hiddenDiv = document.getElementById('endpoints-hidden');
+            const btn = document.getElementById('endpoints-more-btn');
+
+            if (hiddenDiv.style.display === 'none') {
+                hiddenDiv.style.display = 'block';
+                btn.innerHTML = '▲ Show less endpoints';
+            } else {
+                hiddenDiv.style.display = 'none';
+                btn.innerHTML = btn.getAttribute('data-original') || '▼ Show more endpoints';
+            }
+        }
+
+        function toggleParams() {
+            const hiddenDiv = document.getElementById('params-hidden');
+            const btn = document.getElementById('params-more-btn');
+
+            if (!hiddenDiv || !btn) return;
+
+            if (hiddenDiv.style.display === 'none') {
+                hiddenDiv.style.display = 'block';
+                btn.innerHTML = '▲ Show less';
+            } else {
+                hiddenDiv.style.display = 'none';
+                btn.innerHTML = btn.getAttribute('data-original') || '+N more';
+            }
+        }
+
+        // Store original text for toggle buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            const endpointsBtn = document.getElementById('endpoints-more-btn');
+            if (endpointsBtn) {
+                endpointsBtn.setAttribute('data-original', endpointsBtn.innerHTML);
+            }
+
+            const paramsBtn = document.getElementById('params-more-btn');
+            if (paramsBtn) {
+                paramsBtn.setAttribute('data-original', paramsBtn.innerHTML);
+            }
+        });
+    </script>
+</body>
+
+</html>
