@@ -5,6 +5,16 @@ import os
 import sys
 from pathlib import Path
 from datetime import datetime
+import logging
+
+try:
+    import psycopg2
+    from psycopg2.extras import Json
+except ImportError:
+    psycopg2 = None
+    Json = None
+
+logger = logging.getLogger("state")
 
 
 def _safe_json_default(obj):
@@ -113,6 +123,48 @@ def _safe_write_state(state_file: Path, state: dict):
     except Exception as _e:
         tmp_file.rename(state_file)
 
+# ============================================================================
+# PostgreSQL Backend Support
+# ============================================================================
+
+def _is_postgres():
+    url = os.environ.get("DATABASE_URL")
+    return url is not None and url.startswith("postgres") and psycopg2 is not None
+
+def _get_db_conn():
+    if not _is_postgres():
+        return None
+    try:
+        conn = psycopg2.connect(os.environ.get("DATABASE_URL"))
+        conn.autocommit = True
+        return conn
+    except Exception as e:
+        logger.error(f"Failed to connect to Postgres: {e}")
+        return None
+
+def _init_db():
+    if not _is_postgres():
+        return
+    conn = _get_db_conn()
+    if not conn:
+        return
+    try:
+        with conn.cursor() as cur:
+            cur.execute("""
+                CREATE TABLE IF NOT EXISTS scan_runs (
+                    run_id TEXT PRIMARY KEY,
+                    target TEXT,
+                    state JSONB,
+                    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+                    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+                )
+            """)
+    finally:
+        conn.close()
+
+# Initialize DB on import if needed
+_init_db()
+
 def create_run(target, resume_enabled):
     with _LOCK:
         run_id = str(uuid.uuid4())
@@ -178,6 +230,18 @@ def create_run(target, resume_enabled):
         }
 
         # D-4 FIX: use atomic write to prevent corruption on crash
+        if _is_postgres():
+            conn = _get_db_conn()
+            if conn:
+                try:
+                    with conn.cursor() as cur:
+                        cur.execute(
+                            "INSERT INTO scan_runs (run_id, target, state) VALUES (%s, %s, %s)",
+                            (run_id, target, Json(state))
+                        )
+                finally:
+                    conn.close()
+        
         _safe_write_state(state_file, state)
         return state
 
@@ -190,6 +254,18 @@ def _load_state_unlocked(state_file: Path) -> dict:
 
 def load_state(run_id):
     with _LOCK:
+        if _is_postgres():
+            conn = _get_db_conn()
+            if conn:
+                try:
+                    with conn.cursor() as cur:
+                        cur.execute("SELECT state FROM scan_runs WHERE run_id = %s", (run_id,))
+                        row = cur.fetchone()
+                        if row:
+                            return row[0]
+                finally:
+                    conn.close()
+
         state_file = STATE_DIR / f"{run_id}.json"
         if not state_file.exists():
             raise FileNotFoundError("Run state not found")
@@ -379,14 +455,52 @@ def _safe_state_write(run_id: str, mutator):
     """
     with _LOCK:
         state_file = STATE_DIR / f"{run_id}.json"
-        lock_path = _lock_file_path(state_file)
-        fh = _acquire_file_lock(lock_path)
-        try:
-            state = _load_state_unlocked(state_file)
+        
+        # Determine if we should use Postgres
+        use_pg = _is_postgres()
+        state = None
+        
+        if use_pg:
+            conn = _get_db_conn()
+            if conn:
+                try:
+                    with conn.cursor() as cur:
+                        cur.execute("SELECT state FROM scan_runs WHERE run_id = %s", (run_id,))
+                        row = cur.fetchone()
+                        if row:
+                            state = row[0]
+                finally:
+                    conn.close()
+
+        if state is None:
+            # Fallback to file if DB entry missing or PG not used
+            if not state_file.exists():
+                return
+            lock_path = _lock_file_path(state_file)
+            fh = _acquire_file_lock(lock_path)
+            try:
+                state = _load_state_unlocked(state_file)
+            finally:
+                _release_file_lock(fh, lock_path)
+
+        if state is not None:
             mutator(state)
+            
+            # Sync to DB
+            if use_pg:
+                conn = _get_db_conn()
+                if conn:
+                    try:
+                        with conn.cursor() as cur:
+                            cur.execute(
+                                "UPDATE scan_runs SET state = %s, updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
+                                (Json(state), run_id)
+                            )
+                    finally:
+                        conn.close()
+            
+            # Sync to file (for local cache/safety)
             _safe_write_state(state_file, state)
-        finally:
-            _release_file_lock(fh, lock_path)
 
 
 def save_layer2_output(run_id, recon_data, context_data):
