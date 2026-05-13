@@ -30,23 +30,48 @@ _scan_lock = threading.Lock()
 
 
 def _rebuild_active_scans():
-    """B-2 FIX: reconstruct active_scans from disk at Flask startup so runs
+    """B-2 FIX: reconstruct active_scans from DB/disk at Flask startup so runs
     started before a server restart remain queryable from the UI."""
-    if not STATE_DIR.exists():
-        return
-    for sf in STATE_DIR.glob("*.json"):
-        try:
-            state = json.loads(sf.read_text(encoding="utf-8"))
-            if state.get("pipeline", {}).get("status") == "running":
-                run_id = state.get("run_id", sf.stem)
-                active_scans[run_id] = {
-                    "status": "running (pre-restart)",
-                    "target": state.get("target", "unknown"),
-                    "run_id": run_id,
-                    "progress": "Scan was running before server restart",
-                }
-        except Exception as _e:
-            import logging; logging.getLogger(__name__).debug(f'[web] API key check error: {_e}')
+    # First, try to fetch from Postgres
+    from core.state import _is_postgres, _get_db_conn
+    if _is_postgres():
+        conn = _get_db_conn()
+        if conn:
+            try:
+                with conn.cursor() as cur:
+                    cur.execute("SELECT run_id, target, state FROM scan_runs")
+                    for row in cur.fetchall():
+                        run_id, target, state = row
+                        if state.get("pipeline", {}).get("status") == "running":
+                            active_scans[run_id] = {
+                                "status": "running (pre-restart)",
+                                "target": target,
+                                "run_id": run_id,
+                                "progress": "Scan was running before server restart",
+                                "start_time": time.time() # Approximation
+                            }
+            except Exception as e:
+                logger.warning(f"Failed to rebuild active scans from PG: {e}")
+            finally:
+                conn.close()
+
+    # Fallback/Supplemental: check local disk
+    if STATE_DIR.exists():
+        for sf in STATE_DIR.glob("*.json"):
+            try:
+                state = json.loads(sf.read_text(encoding="utf-8"))
+                if state.get("pipeline", {}).get("status") == "running":
+                    run_id = state.get("run_id", sf.stem)
+                    if run_id not in active_scans:
+                        active_scans[run_id] = {
+                            "status": "running (pre-restart)",
+                            "target": state.get("target", "unknown"),
+                            "run_id": run_id,
+                            "progress": "Scan was running before server restart",
+                            "start_time": time.time()
+                        }
+            except Exception as _e:
+                logger.debug(f'[web] State rebuild error: {_e}')
 # FIX WA4: Lock for safe concurrent writes to config/settings.yaml
 _config_lock = threading.Lock()
 
@@ -87,23 +112,58 @@ def load_runs():
     now = _t.monotonic()
     if _runs_cache["data"] is not None and (now - _runs_cache["ts"]) < _RUNS_CACHE_TTL:
         return _runs_cache["data"]
+    
     runs = []
-    if not STATE_DIR.exists():
-        _runs_cache.update({"data": runs, "ts": now})
-        return []
-        
-    for f in STATE_DIR.glob("*.json"):
-        try:
-            data = json.loads(f.read_text())
-            if "run_id" in data:
-                runs.append(data)
-        except (json.JSONDecodeError, OSError) as e:
-            # Skip corrupted/unreadable files, don't crash the dashboard
-            print(f"[dashboard] Warning: Could not load {f.name}: {e}")
-    # Sort by created_at (newest first) - this is the field used in state files
-    return sorted(runs, key=lambda x: x.get("created_at", ""), reverse=True)
+    seen_ids = set()
+
+    # Try PostgreSQL first
+    from core.state import _is_postgres, _get_db_conn
+    if _is_postgres():
+        conn = _get_db_conn()
+        if conn:
+            try:
+                with conn.cursor() as cur:
+                    cur.execute("SELECT state FROM scan_runs ORDER BY created_at DESC")
+                    for row in cur.fetchall():
+                        state = row[0]
+                        if "run_id" in state:
+                            runs.append(state)
+                            seen_ids.add(state["run_id"])
+            except Exception as e:
+                logger.warning(f"Failed to load runs from PG: {e}")
+            finally:
+                conn.close()
+
+    # Add from local disk if not already seen
+    if STATE_DIR.exists():
+        for f in STATE_DIR.glob("*.json"):
+            try:
+                data = json.loads(f.read_text())
+                if "run_id" in data and data["run_id"] not in seen_ids:
+                    runs.append(data)
+                    seen_ids.add(data["run_id"])
+            except (json.JSONDecodeError, OSError) as e:
+                print(f"[dashboard] Warning: Could not load {f.name}: {e}")
+    
+    # Sort by created_at (newest first)
+    final_runs = sorted(runs, key=lambda x: x.get("created_at", ""), reverse=True)
+    _runs_cache.update({"data": final_runs, "ts": now})
+    return final_runs
 
 def load_run(run_id):
+    from core.state import _is_postgres, _get_db_conn
+    if _is_postgres():
+        conn = _get_db_conn()
+        if conn:
+            try:
+                with conn.cursor() as cur:
+                    cur.execute("SELECT state FROM scan_runs WHERE run_id = %s", (run_id,))
+                    row = cur.fetchone()
+                    if row:
+                        return row[0]
+            finally:
+                conn.close()
+
     f = STATE_DIR / f"{run_id}.json"
     if not f.exists():
         abort(404)
