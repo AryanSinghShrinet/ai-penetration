@@ -20,5 +20,8 @@ openai~=1.30
 psycopg2-binary~=2.9
 python-dotenv~=1.0
 
+# Parsing
+beautifulsoup4~=4.12
+
 # Deployment
 gunicorn~=21.2
