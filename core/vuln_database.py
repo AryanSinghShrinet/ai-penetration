@@ -21,6 +21,13 @@ from enum import Enum
 # Configure logging
 logger = logging.getLogger("vuln_database")
 
+try:
+    import psycopg2
+    from psycopg2.extras import RealDictCursor
+except ImportError:
+    psycopg2 = None
+    RealDictCursor = None
+
 
 class Severity(Enum):
     """Normalized severity levels."""
@@ -123,43 +130,72 @@ class VulnDatabase:
         self._conn: Optional[sqlite3.Connection] = None
         self._init_database()
     
+    def _is_postgres(self):
+        url = os.environ.get("DATABASE_URL")
+        return url is not None and url.startswith("postgres") and psycopg2 is not None
+
     @property
-    def conn(self) -> sqlite3.Connection:
+    def conn(self) -> Any:
         """Get database connection (lazy initialization)."""
         if self._conn is None:
-            self._conn = sqlite3.connect(str(self.db_path), check_same_thread=False)
-            self._conn.row_factory = sqlite3.Row
-            # Enable foreign keys
-            self._conn.execute("PRAGMA foreign_keys = ON")
+            if self._is_postgres():
+                db_url = os.environ.get("DATABASE_URL")
+                self._conn = psycopg2.connect(db_url)
+                # Set autocommit to True for schema changes
+                self._conn.autocommit = True
+            else:
+                self._conn = sqlite3.connect(str(self.db_path), check_same_thread=False)
+                self._conn.row_factory = sqlite3.Row
+                # Enable foreign keys
+                self._conn.execute("PRAGMA foreign_keys = ON")
         return self._conn
     
+    def _get_cursor(self):
+        if self._is_postgres():
+            return self.conn.cursor(cursor_factory=RealDictCursor)
+        return self.conn.cursor()
+
     def _init_database(self):
         """Initialize database schema."""
-        cursor = self.conn.cursor()
+        cursor = self._get_cursor()
         
         # Check if we need to create/upgrade schema
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS metadata (
-                key TEXT PRIMARY KEY,
-                value TEXT
-            )
-        """)
+        if self._is_postgres():
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS metadata (
+                    key TEXT PRIMARY KEY,
+                    value TEXT
+                )
+            """)
+        else:
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS metadata (
+                    key TEXT PRIMARY KEY,
+                    value TEXT
+                )
+            """)
         
         cursor.execute("SELECT value FROM metadata WHERE key = 'schema_version'")
         row = cursor.fetchone()
-        current_version = int(row['value']) if row else 0
+        current_version = int(row['value'] if self._is_postgres() else (row['value'] if row else 0)) if row else 0
         
         if current_version < self.SCHEMA_VERSION:
             self._create_schema(cursor)
-            cursor.execute(
-                "INSERT OR REPLACE INTO metadata (key, value) VALUES (?, ?)",
-                ('schema_version', str(self.SCHEMA_VERSION))
-            )
+            if self._is_postgres():
+                cursor.execute(
+                    "INSERT INTO metadata (key, value) VALUES (%s, %s) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value",
+                    ('schema_version', str(self.SCHEMA_VERSION))
+                )
+            else:
+                cursor.execute(
+                    "INSERT OR REPLACE INTO metadata (key, value) VALUES (?, ?)",
+                    ('schema_version', str(self.SCHEMA_VERSION))
+                )
             self.conn.commit()
         
-        logger.info(f"VulnDatabase initialized at {self.db_path}")
+        logger.info(f"VulnDatabase initialized (Postgres: {self._is_postgres()})")
     
-    def _create_schema(self, cursor: sqlite3.Cursor):
+    def _create_schema(self, cursor: Any):
         """Create database schema."""
         
         # CVE table with both CVSS v2 and v3
@@ -208,19 +244,34 @@ class VulnDatabase:
         """)
         
         # CPE matches table for product identification
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS cpe_matches (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                cve_id TEXT NOT NULL,
-                cpe_string TEXT NOT NULL,
-                vendor TEXT,
-                product TEXT,
-                version_start TEXT,
-                version_end TEXT,
-                vulnerable INTEGER DEFAULT 1,
-                FOREIGN KEY (cve_id) REFERENCES cves(id) ON DELETE CASCADE
-            )
-        """)
+        if self._is_postgres():
+             cursor.execute("""
+                CREATE TABLE IF NOT EXISTS cpe_matches (
+                    id SERIAL PRIMARY KEY,
+                    cve_id TEXT NOT NULL,
+                    cpe_string TEXT NOT NULL,
+                    vendor TEXT,
+                    product TEXT,
+                    version_start TEXT,
+                    version_end TEXT,
+                    vulnerable INTEGER DEFAULT 1,
+                    FOREIGN KEY (cve_id) REFERENCES cves(id) ON DELETE CASCADE
+                )
+            """)
+        else:
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS cpe_matches (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    cve_id TEXT NOT NULL,
+                    cpe_string TEXT NOT NULL,
+                    vendor TEXT,
+                    product TEXT,
+                    version_start TEXT,
+                    version_end TEXT,
+                    vulnerable INTEGER DEFAULT 1,
+                    FOREIGN KEY (cve_id) REFERENCES cves(id) ON DELETE CASCADE
+                )
+            """)
         
         # Create indexes for fast lookups
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_cves_cvss_v3 ON cves(cvss_v3_score)")
@@ -236,55 +287,58 @@ class VulnDatabase:
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_cpe_product ON cpe_matches(product)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_cpe_vendor ON cpe_matches(vendor)")
         
-        # Full-text search virtual tables
-        cursor.execute("""
-            CREATE VIRTUAL TABLE IF NOT EXISTS cves_fts USING fts5(
-                id, description, content='cves', content_rowid='rowid'
-            )
-        """)
+        if not self._is_postgres():
+            # Full-text search virtual tables (SQLite only)
+            cursor.execute("""
+                CREATE VIRTUAL TABLE IF NOT EXISTS cves_fts USING fts5(
+                    id, description, content='cves', content_rowid='rowid'
+                )
+            """)
+            
+            cursor.execute("""
+                CREATE VIRTUAL TABLE IF NOT EXISTS exploits_fts USING fts5(
+                    id, title, description, keywords, content='exploits', content_rowid='rowid'
+                )
+            """)
+            
+            # Triggers to keep FTS in sync
+            cursor.executescript("""
+                CREATE TRIGGER IF NOT EXISTS cves_ai AFTER INSERT ON cves BEGIN
+                    INSERT INTO cves_fts(rowid, id, description) 
+                    VALUES (NEW.rowid, NEW.id, NEW.description);
+                END;
+                
+                CREATE TRIGGER IF NOT EXISTS cves_ad AFTER DELETE ON cves BEGIN
+                    INSERT INTO cves_fts(cves_fts, rowid, id, description) 
+                    VALUES('delete', OLD.rowid, OLD.id, OLD.description);
+                END;
+                
+                CREATE TRIGGER IF NOT EXISTS cves_au AFTER UPDATE ON cves BEGIN
+                    INSERT INTO cves_fts(cves_fts, rowid, id, description) 
+                    VALUES('delete', OLD.rowid, OLD.id, OLD.description);
+                    INSERT INTO cves_fts(rowid, id, description) 
+                    VALUES (NEW.rowid, NEW.id, NEW.description);
+                END;
+                
+                CREATE TRIGGER IF NOT EXISTS exploits_ai AFTER INSERT ON exploits BEGIN
+                    INSERT INTO exploits_fts(rowid, id, title, description, keywords) 
+                    VALUES (NEW.rowid, NEW.id, NEW.title, NEW.description, NEW.keywords);
+                END;
+                
+                CREATE TRIGGER IF NOT EXISTS exploits_ad AFTER DELETE ON exploits BEGIN
+                    INSERT INTO exploits_fts(exploits_fts, rowid, id, title, description, keywords) 
+                    VALUES('delete', OLD.rowid, OLD.id, OLD.title, OLD.description, OLD.keywords);
+                END;
+                
+                CREATE TRIGGER IF NOT EXISTS exploits_au AFTER UPDATE ON exploits BEGIN
+                    INSERT INTO exploits_fts(exploits_fts, rowid, id, title, description, keywords) 
+                    VALUES('delete', OLD.rowid, OLD.id, OLD.title, OLD.description, OLD.keywords);
+                    INSERT INTO exploits_fts(rowid, id, title, description, keywords) 
+                    VALUES (NEW.rowid, NEW.id, NEW.title, NEW.description, NEW.keywords);
+                END;
+            """)
         
-        cursor.execute("""
-            CREATE VIRTUAL TABLE IF NOT EXISTS exploits_fts USING fts5(
-                id, title, description, keywords, content='exploits', content_rowid='rowid'
-            )
-        """)
-        
-        # Triggers to keep FTS in sync
-        cursor.executescript("""
-            CREATE TRIGGER IF NOT EXISTS cves_ai AFTER INSERT ON cves BEGIN
-                INSERT INTO cves_fts(rowid, id, description) 
-                VALUES (NEW.rowid, NEW.id, NEW.description);
-            END;
-            
-            CREATE TRIGGER IF NOT EXISTS cves_ad AFTER DELETE ON cves BEGIN
-                INSERT INTO cves_fts(cves_fts, rowid, id, description) 
-                VALUES('delete', OLD.rowid, OLD.id, OLD.description);
-            END;
-            
-            CREATE TRIGGER IF NOT EXISTS cves_au AFTER UPDATE ON cves BEGIN
-                INSERT INTO cves_fts(cves_fts, rowid, id, description) 
-                VALUES('delete', OLD.rowid, OLD.id, OLD.description);
-                INSERT INTO cves_fts(rowid, id, description) 
-                VALUES (NEW.rowid, NEW.id, NEW.description);
-            END;
-            
-            CREATE TRIGGER IF NOT EXISTS exploits_ai AFTER INSERT ON exploits BEGIN
-                INSERT INTO exploits_fts(rowid, id, title, description, keywords) 
-                VALUES (NEW.rowid, NEW.id, NEW.title, NEW.description, NEW.keywords);
-            END;
-            
-            CREATE TRIGGER IF NOT EXISTS exploits_ad AFTER DELETE ON exploits BEGIN
-                INSERT INTO exploits_fts(exploits_fts, rowid, id, title, description, keywords) 
-                VALUES('delete', OLD.rowid, OLD.id, OLD.title, OLD.description, OLD.keywords);
-            END;
-            
-            CREATE TRIGGER IF NOT EXISTS exploits_au AFTER UPDATE ON exploits BEGIN
-                INSERT INTO exploits_fts(exploits_fts, rowid, id, title, description, keywords) 
-                VALUES('delete', OLD.rowid, OLD.id, OLD.title, OLD.description, OLD.keywords);
-                INSERT INTO exploits_fts(rowid, id, title, description, keywords) 
-                VALUES (NEW.rowid, NEW.id, NEW.title, NEW.description, NEW.keywords);
-            END;
-        """)
+        logger.info("Database schema created/updated")
         
         logger.info("Database schema created/updated")
     
@@ -295,29 +349,47 @@ class VulnDatabase:
     def upsert_cve(self, cve: CVERecord) -> bool:
         """Insert or update a CVE record."""
         try:
-            cursor = self.conn.cursor()
-            cursor.execute("""
-                INSERT OR REPLACE INTO cves (
-                    id, description, cvss_v3_score, cvss_v3_vector,
-                    cvss_v2_score, cvss_v2_vector, published_date, modified_date,
-                    cwe_ids, affected_products, references_json, source, severity,
-                    updated_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
-            """, (
-                cve.id,
-                cve.description,
-                cve.cvss_v3_score,
-                cve.cvss_v3_vector,
-                cve.cvss_v2_score,
-                cve.cvss_v2_vector,
-                cve.published_date,
-                cve.modified_date,
-                json.dumps(cve.cwe_ids),
-                json.dumps(cve.affected_products),
-                json.dumps(cve.references),
-                cve.source,
-                cve.severity.value
-            ))
+            cursor = self._get_cursor()
+            if self._is_postgres():
+                cursor.execute("""
+                    INSERT INTO cves (
+                        id, description, cvss_v3_score, cvss_v3_vector,
+                        cvss_v2_score, cvss_v2_vector, published_date, modified_date,
+                        cwe_ids, affected_products, references_json, source, severity,
+                        updated_at
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP)
+                    ON CONFLICT (id) DO UPDATE SET
+                        description = EXCLUDED.description,
+                        cvss_v3_score = EXCLUDED.cvss_v3_score,
+                        cvss_v3_vector = EXCLUDED.cvss_v3_vector,
+                        cvss_v2_score = EXCLUDED.cvss_v2_score,
+                        cvss_v2_vector = EXCLUDED.cvss_v2_vector,
+                        modified_date = EXCLUDED.modified_date,
+                        cwe_ids = EXCLUDED.cwe_ids,
+                        affected_products = EXCLUDED.affected_products,
+                        references_json = EXCLUDED.references_json,
+                        severity = EXCLUDED.severity,
+                        updated_at = CURRENT_TIMESTAMP
+                """, (
+                    cve.id, cve.description, cve.cvss_v3_score, cve.cvss_v3_vector,
+                    cve.cvss_v2_score, cve.cvss_v2_vector, cve.published_date, cve.modified_date,
+                    json.dumps(cve.cwe_ids), json.dumps(cve.affected_products),
+                    json.dumps(cve.references), cve.source, cve.severity.value
+                ))
+            else:
+                cursor.execute("""
+                    INSERT OR REPLACE INTO cves (
+                        id, description, cvss_v3_score, cvss_v3_vector,
+                        cvss_v2_score, cvss_v2_vector, published_date, modified_date,
+                        cwe_ids, affected_products, references_json, source, severity,
+                        updated_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+                """, (
+                    cve.id, cve.description, cve.cvss_v3_score, cve.cvss_v3_vector,
+                    cve.cvss_v2_score, cve.cvss_v2_vector, cve.published_date, cve.modified_date,
+                    json.dumps(cve.cwe_ids), json.dumps(cve.affected_products),
+                    json.dumps(cve.references), cve.source, cve.severity.value
+                ))
             self.conn.commit()
             return True
         except Exception as e:
@@ -399,31 +471,52 @@ class VulnDatabase:
     def upsert_exploit(self, exploit: ExploitRecord) -> bool:
         """Insert or update an exploit record."""
         try:
-            cursor = self.conn.cursor()
-            cursor.execute("""
-                INSERT OR REPLACE INTO exploits (
-                    id, cve_id, title, description, platform, exploit_type,
-                    payload, source, source_id, reference_url, author,
-                    published_date, verified, keywords, affected_products,
-                    updated_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
-            """, (
-                exploit.id,
-                exploit.cve_id,  # Can be NULL
-                exploit.title,
-                exploit.description,
-                exploit.platform,
-                exploit.exploit_type,
-                exploit.payload,
-                exploit.source,
-                exploit.source_id,
-                exploit.reference_url,
-                exploit.author,
-                exploit.published_date,
-                1 if exploit.verified else 0,
-                json.dumps(exploit.keywords),
-                json.dumps(exploit.affected_products)
-            ))
+            cursor = self._get_cursor()
+            if self._is_postgres():
+                cursor.execute("""
+                    INSERT INTO exploits (
+                        id, cve_id, title, description, platform, exploit_type,
+                        payload, source, source_id, reference_url, author,
+                        published_date, verified, keywords, affected_products,
+                        updated_at
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP)
+                    ON CONFLICT (id) DO UPDATE SET
+                        cve_id = EXCLUDED.cve_id,
+                        title = EXCLUDED.title,
+                        description = EXCLUDED.description,
+                        platform = EXCLUDED.platform,
+                        exploit_type = EXCLUDED.exploit_type,
+                        payload = EXCLUDED.payload,
+                        source_id = EXCLUDED.source_id,
+                        reference_url = EXCLUDED.reference_url,
+                        author = EXCLUDED.author,
+                        published_date = EXCLUDED.published_date,
+                        verified = EXCLUDED.verified,
+                        keywords = EXCLUDED.keywords,
+                        affected_products = EXCLUDED.affected_products,
+                        updated_at = CURRENT_TIMESTAMP
+                """, (
+                    exploit.id, exploit.cve_id, exploit.title, exploit.description,
+                    exploit.platform, exploit.exploit_type, exploit.payload,
+                    exploit.source, exploit.source_id, exploit.reference_url,
+                    exploit.author, exploit.published_date, 1 if exploit.verified else 0,
+                    json.dumps(exploit.keywords), json.dumps(exploit.affected_products)
+                ))
+            else:
+                cursor.execute("""
+                    INSERT OR REPLACE INTO exploits (
+                        id, cve_id, title, description, platform, exploit_type,
+                        payload, source, source_id, reference_url, author,
+                        published_date, verified, keywords, affected_products,
+                        updated_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+                """, (
+                    exploit.id, exploit.cve_id, exploit.title, exploit.description,
+                    exploit.platform, exploit.exploit_type, exploit.payload,
+                    exploit.source, exploit.source_id, exploit.reference_url,
+                    exploit.author, exploit.published_date, 1 if exploit.verified else 0,
+                    json.dumps(exploit.keywords), json.dumps(exploit.affected_products)
+                ))
             self.conn.commit()
             return True
         except Exception as e:
@@ -532,7 +625,7 @@ class VulnDatabase:
         
         Returns dict with 'cves', 'exploits', 'total_cves', 'total_exploits'.
         """
-        cursor = self.conn.cursor()
+        cursor = self._get_cursor()
         results = {"cves": [], "exploits": [], "total_cves": 0, "total_exploits": 0}
         
         # Search CVEs
@@ -540,28 +633,32 @@ class VulnDatabase:
         cve_params = []
         
         if query:
-            # Use FTS for text search
-            cve_conditions.append("id IN (SELECT id FROM cves_fts WHERE cves_fts MATCH ?)")
-            cve_params.append(f'"{query}"*')
+            if self._is_postgres():
+                cve_conditions.append("(id ILIKE %s OR description ILIKE %s)")
+                cve_params.extend([f"%{query}%", f"%{query}%"])
+            else:
+                # Use FTS for text search
+                cve_conditions.append("id IN (SELECT id FROM cves_fts WHERE cves_fts MATCH ?)")
+                cve_params.append(f'"{query}"*')
         
         if severity:
-            cve_conditions.append("severity = ?")
+            cve_conditions.append("severity = %s" if self._is_postgres() else "severity = ?")
             cve_params.append(severity.upper())
         
         if min_cvss is not None:
-            cve_conditions.append("(cvss_v3_score >= ? OR cvss_v2_score >= ?)")
+            cve_conditions.append("(cvss_v3_score >= %s OR cvss_v2_score >= %s)" if self._is_postgres() else "(cvss_v3_score >= ? OR cvss_v2_score >= ?)")
             cve_params.extend([min_cvss, min_cvss])
         
         if max_cvss is not None:
-            cve_conditions.append("(cvss_v3_score <= ? OR cvss_v2_score <= ?)")
+            cve_conditions.append("(cvss_v3_score <= %s OR cvss_v2_score <= %s)" if self._is_postgres() else "(cvss_v3_score <= ? OR cvss_v2_score <= ?)")
             cve_params.extend([max_cvss, max_cvss])
         
         if date_from:
-            cve_conditions.append("published_date >= ?")
+            cve_conditions.append("published_date >= %s" if self._is_postgres() else "published_date >= ?")
             cve_params.append(date_from)
         
         if date_to:
-            cve_conditions.append("published_date <= ?")
+            cve_conditions.append("published_date <= %s" if self._is_postgres() else "published_date <= ?")
             cve_params.append(date_to)
         
         if has_exploit is True:
@@ -574,11 +671,12 @@ class VulnDatabase:
         results["total_cves"] = cursor.fetchone()['cnt']
         
         # Get paginated results
+        limit_offset = "LIMIT %s OFFSET %s" if self._is_postgres() else "LIMIT ? OFFSET ?"
         cursor.execute(f"""
             SELECT * FROM cves 
             WHERE {cve_where} 
             ORDER BY COALESCE(cvss_v3_score, cvss_v2_score, 0) DESC, published_date DESC
-            LIMIT ? OFFSET ?
+            {limit_offset}
         """, cve_params + [limit, offset])
         
         results["cves"] = [self._row_to_cve(row) for row in cursor.fetchall()]
@@ -588,17 +686,21 @@ class VulnDatabase:
         exploit_params = []
         
         if query:
-            exploit_conditions.append(
-                "id IN (SELECT id FROM exploits_fts WHERE exploits_fts MATCH ?)"
-            )
-            exploit_params.append(f'"{query}"*')
+            if self._is_postgres():
+                exploit_conditions.append("(title ILIKE %s OR description ILIKE %s OR keywords ILIKE %s)")
+                exploit_params.extend([f"%{query}%", f"%{query}%", f"%{query}%"])
+            else:
+                exploit_conditions.append(
+                    "id IN (SELECT id FROM exploits_fts WHERE exploits_fts MATCH ?)"
+                )
+                exploit_params.append(f'"{query}"*')
         
         if platform:
-            exploit_conditions.append("platform = ?")
+            exploit_conditions.append("platform = %s" if self._is_postgres() else "platform = ?")
             exploit_params.append(platform.lower())
         
         if exploit_type:
-            exploit_conditions.append("exploit_type = ?")
+            exploit_conditions.append("exploit_type = %s" if self._is_postgres() else "exploit_type = ?")
             exploit_params.append(exploit_type.lower())
         
         exploit_where = " AND ".join(exploit_conditions) if exploit_conditions else "1=1"
@@ -610,7 +712,7 @@ class VulnDatabase:
             SELECT * FROM exploits 
             WHERE {exploit_where}
             ORDER BY published_date DESC
-            LIMIT ? OFFSET ?
+            {limit_offset}
         """, exploit_params + [limit, offset])
         
         results["exploits"] = [self._row_to_exploit(row) for row in cursor.fetchall()]
