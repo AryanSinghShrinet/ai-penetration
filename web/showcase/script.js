@@ -5,6 +5,17 @@ const API_BASE = '';
 
 // FIX 4: Cached scope config
 let scopeConfig = null;
+let apiKey = localStorage.getItem('ai_pentester_api_key') || '';
+
+// Centralized fetch with API Key support
+async function apiFetch(url, options = {}) {
+    const headers = options.headers || {};
+    if (apiKey) {
+        headers['X-API-Key'] = apiKey;
+    }
+    
+    return fetch(url, { ...options, headers });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     initTerminalAnimation();
@@ -18,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // FIX 4: Load scope configuration
 async function loadScopeConfig() {
     try {
-        const response = await fetch(`${API_BASE}/api/config/scope`);
+        const response = await apiFetch(`${API_BASE}/api/config/scope`);
         if (response.ok) {
             scopeConfig = await response.json();
             console.log('Scope config loaded:', scopeConfig);
@@ -270,7 +281,7 @@ async function handleScanSubmit(e) {
     }
 
     try {
-        const response = await fetch(`${API_BASE}/api/scan/start`, {
+        const response = await apiFetch(`${API_BASE}/api/scan/start`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -313,7 +324,7 @@ async function checkScanStatus() {
     if (!currentScanId) return;
 
     try {
-        const response = await fetch(`${API_BASE}/api/scan/${currentScanId}/status`);
+        const response = await apiFetch(`${API_BASE}/api/scan/${currentScanId}/status`);
         const data = await response.json();
 
         if (!response.ok) {
@@ -636,7 +647,7 @@ async function loadRecentRuns() {
     if (!runsList) return;
 
     try {
-        const response = await fetch(`${API_BASE}/api/runs`);
+        const response = await apiFetch(`${API_BASE}/api/runs`);
 
         if (!response.ok) {
             // Probably not running from Flask server
