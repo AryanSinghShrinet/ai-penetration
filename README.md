@@ -171,7 +171,7 @@ See `requirements.txt`. Key dependencies:
 1. Fork the repository and create a feature branch
 2. Write tests for new vulnerability classes or modules
 3. Open a pull request with a clear description of the change
-
+4. By utkarsh singh shrinet
 ---
 
 ## Disclaimer
